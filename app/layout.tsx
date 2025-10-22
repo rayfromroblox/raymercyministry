@@ -55,7 +55,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head>
         {/* Google Search Console Verification - Replace YOUR_VERIFICATION_CODE_HERE with the actual code from Google */}
-        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+        <meta name="google-site-verification" content="t59QmlN1scjF2bbE5CjX_yIFn48VZuwo3gWDO-BnLiY" />
       </head>
       <body className={poppins.className}>
         <ThemeProvider defaultTheme="system">
