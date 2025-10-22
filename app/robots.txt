@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourdomainhere.com/sitemap.xml
+Sitemap: https://raymercyministry.netlify.app/sitemap.xml
 
