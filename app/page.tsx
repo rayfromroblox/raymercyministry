@@ -5,7 +5,6 @@ import Navbar from '@/components/Navbar'
 import ScrollProgress from '@/components/ScrollProgress'
 import Hero from '@/components/Hero'
 
-// Lazy load below-fold components for instant initial paint
 const About = dynamic(() => import('@/components/About'), { 
   loading: () => <div className="h-screen" />
 })

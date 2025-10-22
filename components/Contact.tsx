@@ -4,15 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, memo } from 'react'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'
 
-/**
- * Contact Section Component
- * 
- * Displays contact information without a form
- * To customize:
- * - Update phone number and email if needed
- * - Add actual social media links
- * - Modify location information
- */
+// Contact Section Component
 const Contact = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -68,12 +60,10 @@ const Contact = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {/* Unified CTA Section - Mobile Optimized */}
           <motion.div
             variants={itemVariants}
             className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 rounded-2xl md:rounded-3xl p-6 md:p-12 lg:p-16 text-center shadow-2xl overflow-hidden"
           >
-            {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full filter blur-3xl" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-warm-400/10 rounded-full filter blur-3xl" />
             
@@ -85,7 +75,6 @@ const Contact = () => {
                 Partner with us to bring hope to vulnerable children and families across Kenya
               </p>
               
-              {/* Contact Info Integrated - Responsive */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10 max-w-4xl mx-auto">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="text-center">
@@ -129,7 +118,6 @@ const Contact = () => {
                 ))}
               </div>
               
-              {/* CTA Buttons - Mobile Optimized */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center max-w-md mx-auto">
                 <motion.a
                   href="tel:+254721826905"
@@ -157,7 +145,6 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Social Media - Coming Soon */}
           <motion.div variants={itemVariants} className="mt-12 text-center">
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-50 dark:bg-dark-800 rounded-full border border-gray-200 dark:border-dark-700">
               <div className="flex gap-2">

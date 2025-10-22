@@ -9,10 +9,7 @@ interface LazyImageProps {
   style?: React.CSSProperties
 }
 
-/**
- * Optimized lazy loading image component
- * Uses Intersection Observer for better performance
- */
+// Lazy loading image component
 export default function LazyImage({ src, alt, className = '', style }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)

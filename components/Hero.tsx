@@ -3,15 +3,7 @@
 import { motion } from 'framer-motion'
 import { memo, useCallback } from 'react'
 
-/**
- * Hero Section Component
- * 
- * Full-screen hero with background gradient, mission statement, and CTA
- * To customize:
- * - Change mission statement in the h1 tag
- * - Update background gradient colors in the className
- * - Replace background image by adding bg-[url('/path/to/image.jpg')] to the div
- */
+// Hero Section Component
 const Hero = () => {
   const scrollToAbout = useCallback(() => {
     const aboutSection = document.getElementById('about')
@@ -20,22 +12,18 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary-50 via-white to-white dark:from-dark-950 dark:via-dark-900 dark:to-dark-800" />
       
-      {/* Enhanced decorative elements with better positioning */}
       <div className="absolute top-10 -left-20 w-96 h-96 bg-primary-200 dark:bg-primary-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse" />
       <div className="absolute -bottom-10 -right-20 w-96 h-96 bg-warm-200 dark:bg-warm-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse" style={{ animationDelay: '1s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-100 dark:bg-primary-900 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-5" />
       
-      {/* Content */}
       <div className="container-custom relative z-10 text-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Logo with transparent/blended background */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -60,7 +48,6 @@ const Hero = () => {
                   height="256"
                 />
               </picture>
-              {/* Subtle glow effect */}
               <div className="absolute inset-0 bg-primary-200/30 dark:bg-primary-800/30 blur-2xl rounded-full transform scale-75" />
             </div>
           </motion.div>
@@ -84,13 +71,11 @@ const Hero = () => {
             <span className="relative z-10">Learn More</span>
             <span className="relative z-10 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
             
-            {/* Shimmer effect on hover */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </motion.button>
         </motion.div>
       </div>
 
-      {/* Smooth wave transition to next section */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
         <svg 
           className="relative block w-full h-24 md:h-32" 

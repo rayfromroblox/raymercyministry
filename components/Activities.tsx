@@ -4,15 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, memo } from 'react'
 import { FaChild, FaHandsHelping } from 'react-icons/fa'
 
-/**
- * Activities Section Component
- * 
- * Showcases the ministry's outreach programs and events
- * To customize:
- * - Edit activity titles and descriptions
- * - Replace placeholder images with actual event photos
- * - Add or remove activities as needed
- */
+// Activities Section Component
 const Activities = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -61,7 +53,6 @@ const Activities = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {/* Section Header */}
           <motion.div variants={cardVariants} className="text-center mb-16">
             <h2 className="heading-secondary mb-4">
               Our Programs
@@ -69,7 +60,6 @@ const Activities = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full" />
           </motion.div>
 
-          {/* Activities Grid - 2 Column */}
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {activities.map((activity, index) => (
               <motion.div
@@ -79,16 +69,11 @@ const Activities = () => {
                 whileHover={{ y: -8 }}
                 style={{ willChange: 'transform' }}
               >
-                {/* Image Section */}
                 <div className={`relative h-72 md:h-80 bg-gradient-to-br ${activity.gradient} flex items-center justify-center overflow-hidden`}>
-                  {/* Replace this div with actual image: 
-                      <Image src={`/images/${activity.image}.jpg`} alt={activity.title} fill className="object-cover" />
-                  */}
                   <activity.icon className="text-white text-7xl group-hover:scale-110 transition-transform duration-300" />
                   <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 </div>
                 
-                {/* Content Section */}
                 <div className="p-8">
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="text-2xl font-semibold text-gray-900 dark:text-dark-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300 tracking-tight">
@@ -101,7 +86,6 @@ const Activities = () => {
                   </p>
                 </div>
 
-                {/* Hover accent line */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-400 to-warm-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </motion.div>
             ))}

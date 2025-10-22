@@ -4,11 +4,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect, memo, useCallback } from 'react'
 import ThemeToggle from './ThemeToggle'
 
-/**
- * Navbar Component with Apple-style Glassmorphism
- * 
- * Features sticky navigation with liquid glass effect
- */
+// Navbar Component
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   
@@ -46,7 +42,6 @@ const Navbar = () => {
     >
       <div className="container-custom px-6">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <motion.button
             onClick={() => scrollToSection('hero')}
             className="flex items-center gap-3 group"
@@ -74,7 +69,6 @@ const Navbar = () => {
             </span>
           </motion.button>
 
-          {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <motion.button
@@ -90,7 +84,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right side - Theme Toggle and Mobile Menu */}
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <MobileMenu navLinks={navLinks} scrollToSection={scrollToSection} />
@@ -101,7 +94,6 @@ const Navbar = () => {
   )
 }
 
-// Mobile Menu Component
 const MobileMenu = ({ navLinks, scrollToSection }: any) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -128,7 +120,6 @@ const MobileMenu = ({ navLinks, scrollToSection }: any) => {
         </svg>
       </button>
 
-      {/* Mobile Menu Dropdown with Glassmorphism */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}

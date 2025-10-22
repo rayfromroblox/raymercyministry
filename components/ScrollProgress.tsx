@@ -3,10 +3,7 @@
 import { motion, useScroll } from 'framer-motion'
 import { memo } from 'react'
 
-/**
- * Scroll Progress Bar
- * Shows a thin progress bar at the top of the page
- */
+// Scroll Progress Bar
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll()
 

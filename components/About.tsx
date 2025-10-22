@@ -4,15 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, memo } from 'react'
 import { FaHeart, FaHandHoldingHeart, FaHome } from 'react-icons/fa'
 
-/**
- * About Section Component
- * 
- * Tells the story of the ministry with alternating image-text layout
- * To customize:
- * - Edit the mission statement and vision text
- * - Replace placeholder images in the public/images folder
- * - Adjust the three core values (icons and text)
- */
+// About Section Component
 const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -44,7 +36,6 @@ const About = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="heading-secondary mb-4">
               About Us
@@ -52,9 +43,7 @@ const About = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full" />
           </motion.div>
 
-          {/* Mission and Vision - Grid Layout on Desktop */}
           <motion.div variants={itemVariants} className="grid lg:grid-cols-2 gap-8 md:gap-12 mb-16">
-            {/* Mission */}
             <div>
               <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-dark-100 mb-4">
                 Mission
@@ -71,7 +60,6 @@ const About = () => {
               </div>
             </div>
 
-            {/* Vision */}
             <div>
               <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-dark-100 mb-4">
                 Vision
@@ -88,7 +76,6 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Core Values */}
           <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-6 md:gap-8 mt-16">
             {[
               {
@@ -119,7 +106,6 @@ const About = () => {
                 transition={{ delay: index * 0.1 }}
                 style={{ willChange: 'transform' }}
               >
-                {/* Background gradient on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                 
                 <div className="relative z-10">
@@ -130,7 +116,6 @@ const About = () => {
                   <p className="text-gray-600 dark:text-dark-300 leading-relaxed">{value.description}</p>
                 </div>
                 
-                {/* Decorative dot */}
                 <div className="absolute top-4 right-4 w-2 h-2 bg-primary-300 dark:bg-primary-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}

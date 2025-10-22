@@ -4,22 +4,13 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState, memo, useCallback } from 'react'
 import { FaTimes, FaChevronLeft, FaChevronRight, FaImages } from 'react-icons/fa'
 
-/**
- * Gallery Section Component
- * 
- * Responsive photo gallery with lightbox functionality
- * To customize:
- * - Replace placeholder images in the galleryImages array
- * - Add actual event photos to public/images/gallery/
- * - Adjust grid layout as needed
- */
+// Gallery Section Component
 const Gallery = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
 
-  // Replace these with actual image paths from your public/images/gallery folder
   const galleryImages = [
     { id: 1, src: '/images/gallery/1.jpg', alt: 'Ministry outreach with children', color: 'from-primary-300 to-primary-400' },
     { id: 2, src: '/images/gallery/2.jpg', alt: 'Children receiving care and support', color: 'from-primary-400 to-primary-500' },
@@ -76,7 +67,6 @@ const Gallery = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-12">
             <h2 className="heading-secondary mb-4">
               Gallery
@@ -95,7 +85,6 @@ const Gallery = () => {
             )}
           </motion.div>
 
-          {/* Gallery Grid - Collapsible */}
           {isGalleryOpen && (
             <div className="animate-fade-in">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -106,7 +95,6 @@ const Gallery = () => {
                 onClick={() => openLightbox(index)}
                 style={{ willChange: 'transform' }}
               >
-                {/* Gallery Image with lazy loading */}
                 <img 
                   src={image.src} 
                   alt={image.alt} 
@@ -115,7 +103,6 @@ const Gallery = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 
-                {/* Enhanced Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-white font-medium text-lg">{image.alt}</p>
@@ -126,7 +113,6 @@ const Gallery = () => {
             ))}
               </div>
               
-              {/* Collapse Button */}
               <div className="text-center mt-8">
                 <button
                   onClick={() => setIsGalleryOpen(false)}
@@ -140,7 +126,6 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      {/* Lightbox Modal */}
       {selectedImage !== null && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -149,7 +134,6 @@ const Gallery = () => {
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
-          {/* Close Button */}
           <button
             className="absolute top-4 right-4 text-white text-4xl hover:text-primary-400 transition-colors z-10"
             onClick={closeLightbox}
@@ -157,7 +141,6 @@ const Gallery = () => {
             <FaTimes />
           </button>
 
-          {/* Previous Button */}
           <button
             className="absolute left-4 text-white text-4xl hover:text-primary-400 transition-colors z-10"
             onClick={(e) => {
@@ -168,7 +151,6 @@ const Gallery = () => {
             <FaChevronLeft />
           </button>
 
-          {/* Image */}
           <motion.div
             key={selectedImage}
             initial={{ scale: 0.9, opacity: 0 }}
@@ -176,7 +158,6 @@ const Gallery = () => {
             className="max-w-5xl max-h-[90vh] relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Lightbox Image */}
             <img
               src={galleryImages[selectedImage].src}
               alt={galleryImages[selectedImage].alt}
@@ -188,7 +169,6 @@ const Gallery = () => {
             </p>
           </motion.div>
 
-          {/* Next Button */}
           <button
             className="absolute right-4 text-white text-4xl hover:text-primary-400 transition-colors z-10"
             onClick={(e) => {
@@ -199,7 +179,6 @@ const Gallery = () => {
             <FaChevronRight />
           </button>
 
-          {/* Counter */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg">
             {selectedImage + 1} / {galleryImages.length}
           </div>
