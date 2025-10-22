@@ -55,10 +55,10 @@ const Hero = () => {
           <h1 className="heading-primary mb-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-dark-100 dark:via-dark-200 dark:to-dark-100 bg-clip-text text-transparent">
             Ray Mercy Ministry
           </h1>
-          <p className="text-2xl md:text-3xl font-light text-gray-600 dark:text-dark-300 mb-4 tracking-wide">
+          <p className="text-2xl md:text-3xl font-light text-gray-600 dark:text-dark-300 mb-4 tracking-wide leading-relaxed">
             Bringing Hope to the Vulnerable
           </p>
-          <p className="text-base md:text-lg text-gray-500 dark:text-dark-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-base md:text-lg text-gray-500 dark:text-dark-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
             Serving children and families across Kenya with compassion and dignity
           </p>
           

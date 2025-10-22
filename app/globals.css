@@ -13,12 +13,12 @@
     @apply bg-white dark:bg-dark-950 text-gray-800 dark:text-dark-100 transition-colors duration-300;
   }
   
-  /* Enhanced focus states for accessibility */
+  /* Focus states for accessibility */
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-primary-500 dark:outline-primary-400 rounded-sm;
   }
   
-  /* Selection color */
+  /* Text selection color */
   ::selection {
     @apply bg-primary-200 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
   }
@@ -54,7 +54,7 @@
     @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
   }
   
-  /* Card hover effects */
+  /* Card hover animations */
   .card-hover {
     @apply transition-all duration-500 ease-out;
   }
@@ -63,7 +63,7 @@
     @apply transform -translate-y-2;
   }
   
-  /* Smooth reveal animation */
+  /* Reveal animation */
   @keyframes reveal {
     from {
       opacity: 0;
@@ -79,7 +79,7 @@
     animation: reveal 0.6s ease-out forwards;
   }
   
-  /* Logo blend mode fix for dark mode */
+  /* Logo dark mode fix */
   .logo-blend {
     mix-blend-mode: multiply;
   }
@@ -89,7 +89,7 @@
   }
 }
 
-/* Glassmorphism - Apple-style liquid glass effect */
+/* Glassmorphism effect */
 @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
   .glass-nav {
     background: rgba(255, 255, 255, 0.7);
@@ -98,14 +98,14 @@
   }
 }
 
-/* Smooth scroll behavior */
+/* Scroll behavior */
 @supports (scroll-behavior: smooth) {
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* Custom scrollbar - refined */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -122,14 +122,14 @@
   @apply from-primary-500 to-primary-600;
 }
 
-/* Smooth page transitions */
+/* Page transitions */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* Loading state for images */
+/* Image loading */
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;

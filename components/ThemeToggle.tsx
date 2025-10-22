@@ -45,7 +45,7 @@ const ThemeToggle = () => {
       {/* Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 dark:bg-dark-800/50 backdrop-blur-sm border border-white/20 dark:border-dark-700/50 text-gray-700 dark:text-dark-200 hover:bg-white/20 dark:hover:bg-dark-700/50 transition-all duration-300 group"
+        className="relative flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 dark:bg-dark-800/50 backdrop-blur-sm border border-white/20 dark:border-dark-700/50 text-gray-700 dark:text-dark-200 hover:bg-white/20 dark:hover:bg-dark-700/50 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500/50"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -81,7 +81,7 @@ const ThemeToggle = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full right-0 mt-2 w-40 bg-white/90 dark:bg-dark-800/90 backdrop-blur-xl border border-white/20 dark:border-dark-700/50 rounded-2xl shadow-2xl overflow-hidden z-50"
+            className="absolute top-full right-0 mt-2 w-40 bg-white/90 dark:bg-dark-800/90 backdrop-blur-xl border border-white/20 dark:border-dark-700/50 rounded-2xl shadow-2xl overflow-hidden z-50 focus:outline-none"
             onMouseLeave={() => setIsOpen(false)}
           >
             {themes.map((themeOption) => (

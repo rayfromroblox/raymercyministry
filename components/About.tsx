@@ -48,7 +48,7 @@ const About = () => {
               <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-dark-100 mb-4">
                 Mission
               </h3>
-              <p className="text-gray-600 dark:text-dark-300 text-lg leading-loose mb-6">
+              <p className="text-gray-600 dark:text-dark-300 text-lg leading-loose mb-6 font-light">
                 We serve vulnerable children and families through feeding programs and community outreach. 
                 Twice yearly, we provide meals and support to those in need across Kenya.
               </p>
@@ -64,7 +64,7 @@ const About = () => {
               <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-dark-100 mb-4">
                 Vision
               </h3>
-              <p className="text-gray-600 dark:text-dark-300 text-lg leading-loose mb-6">
+              <p className="text-gray-600 dark:text-dark-300 text-lg leading-loose mb-6 font-light">
                 To establish a children's home providing safety, education, and care for orphaned and 
                 vulnerable children in Kenya.
               </p>

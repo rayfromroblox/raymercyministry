@@ -71,7 +71,7 @@ const Contact = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 tracking-tight">
                 Support Our Mission
               </h2>
-              <p className="text-white/90 text-base md:text-lg lg:text-xl mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-white/90 text-base md:text-lg lg:text-xl mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-light">
                 Partner with us to bring hope to vulnerable children and families across Kenya
               </p>
               

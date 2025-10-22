@@ -10,8 +10,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Ray Mercy Ministry - Spreading Love and Hope',
-  description: 'Ray Mercy Ministry focuses on visiting the needy and vulnerable—especially children and the sick. Join us in spreading love and hope.',
+  title: 'Ray Mercy Ministry - Bringing Hope to the Vulnerable',
+  description: 'Serving children and families across Kenya with compassion and dignity through feeding programs and community outreach.',
   keywords: 'charity, ministry, children, vulnerable, mercy, hope, Kenya, Rachel Macharia, feeding programs, community outreach',
   authors: [{ name: 'Rachel Macharia' }],
   creator: 'Ray Mercy Ministry',
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://raymercyministry.netlify.app',
-    title: 'Ray Mercy Ministry - Spreading Love and Hope',
-    description: 'Ray Mercy Ministry focuses on visiting the needy and vulnerable—especially children and the sick. Join us in spreading love and hope.',
+    title: 'Ray Mercy Ministry - Bringing Hope to the Vulnerable',
+    description: 'Serving children and families across Kenya with compassion and dignity through feeding programs and community outreach.',
     siteName: 'Ray Mercy Ministry',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ray Mercy Ministry - Spreading Love and Hope',
-    description: 'Ray Mercy Ministry focuses on visiting the needy and vulnerable—especially children and the sick. Join us in spreading love and hope.',
+    title: 'Ray Mercy Ministry - Bringing Hope to the Vulnerable',
+    description: 'Serving children and families across Kenya with compassion and dignity through feeding programs and community outreach.',
   },
   icons: {
     icon: '/favicon.ico',
