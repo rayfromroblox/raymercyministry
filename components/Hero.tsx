@@ -31,23 +31,16 @@ const Hero = () => {
             className="mb-10"
           >
             <div className="relative">
-              <picture>
-                <source 
-                  srcSet="/images/logo-256.webp 256w, /images/logo-320.webp 320w, /images/logo-384.png 384w" 
-                  sizes="(max-width: 768px) 160px, (max-width: 1024px) 224px, 256px"
-                  type="image/webp"
-                />
-                <img 
-                  src="/images/logo-256.png" 
-                  alt="Ray Mercy Ministry" 
-                  className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 mx-auto drop-shadow-2xl relative z-10"
-                  style={{ mixBlendMode: 'multiply' }}
-                  fetchPriority="high"
-                  decoding="async"
-                  width="256"
-                  height="256"
-                />
-              </picture>
+              <img 
+                src="/images/logo.png" 
+                alt="Ray Mercy Ministry" 
+                className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 mx-auto drop-shadow-2xl relative z-10"
+                style={{ mixBlendMode: 'multiply' }}
+                fetchPriority="high"
+                decoding="async"
+                width="256"
+                height="256"
+              />
               <div className="absolute inset-0 bg-primary-200/30 dark:bg-primary-800/30 blur-2xl rounded-full transform scale-75" />
             </div>
           </motion.div>

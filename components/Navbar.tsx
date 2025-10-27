@@ -48,22 +48,15 @@ const Navbar = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <picture>
-              <source 
-                srcSet="/images/logo-48.webp 48w, /images/logo-64.webp 64w" 
-                sizes="48px"
-                type="image/webp"
-              />
-              <img 
-                src="/images/logo-48.png" 
-                alt="Ray Mercy Ministry" 
-                className="w-12 h-12 rounded-full transition-transform group-hover:scale-110 shadow-md logo-blend"
-                fetchPriority="high"
-                decoding="async"
-                width="48"
-                height="48"
-              />
-            </picture>
+            <img 
+              src="/images/logo.png" 
+              alt="Ray Mercy Ministry" 
+              className="w-12 h-12 rounded-full transition-transform group-hover:scale-110 shadow-md logo-blend"
+              fetchPriority="high"
+              decoding="async"
+              width="48"
+              height="48"
+            />
             <span className="font-semibold text-gray-900 dark:text-dark-100 hidden md:block">
               Ray Mercy Ministry
             </span>

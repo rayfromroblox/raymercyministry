@@ -15,22 +15,15 @@ const Footer = () => {
       
       <div className="container-custom px-6 relative z-10">
         <div className="flex justify-center mb-6">
-          <picture>
-            <source 
-              srcSet="/images/logo-96.webp 96w" 
-              sizes="96px"
-              type="image/webp"
-            />
-            <img 
-              src="/images/logo-96.png" 
-              alt="Ray Mercy Ministry" 
-              className="w-24 h-24 rounded-full opacity-90 hover:opacity-100 transition-opacity shadow-lg"
-              loading="lazy"
-              decoding="async"
-              width="96"
-              height="96"
-            />
-          </picture>
+          <img 
+            src="/images/logo.png" 
+            alt="Ray Mercy Ministry" 
+            className="w-24 h-24 rounded-full opacity-90 hover:opacity-100 transition-opacity shadow-lg"
+            loading="lazy"
+            decoding="async"
+            width="96"
+            height="96"
+          />
         </div>
 
         <div className="flex justify-center mb-8">
