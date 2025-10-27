@@ -16,6 +16,16 @@ const Gallery = () => {
     { id: 2, src: '/images/gallery/2.jpg', alt: 'Children receiving care and support', color: 'from-primary-400 to-primary-500' },
     { id: 3, src: '/images/gallery/3.jpg', alt: 'Community service event', color: 'from-primary-500 to-primary-600' },
     { id: 4, src: '/images/gallery/4.jpg', alt: 'Bringing hope to vulnerable children', color: 'from-primary-300 to-primary-500' },
+    { id: 5, src: '/images/gallery/5.jpg', alt: 'Feeding program initiative', color: 'from-primary-400 to-primary-600' },
+    { id: 6, src: '/images/gallery/6.jpg', alt: 'Serving the community with love', color: 'from-primary-500 to-primary-700' },
+    { id: 7, src: '/images/gallery/7.jpg', alt: 'Ministry work in action', color: 'from-primary-300 to-primary-400' },
+    { id: 8, src: '/images/gallery/8.jpg', alt: 'Making a difference in children lives', color: 'from-primary-400 to-primary-500' },
+    { id: 9, src: '/images/gallery/9.jpg', alt: 'Spreading hope and joy', color: 'from-primary-500 to-primary-600' },
+    { id: 10, src: '/images/gallery/10.jpg', alt: 'Empowering vulnerable communities', color: 'from-primary-300 to-primary-500' },
+    { id: 11, src: '/images/gallery/11.jpg', alt: 'Mercy and compassion in action', color: 'from-primary-400 to-primary-600' },
+    { id: 12, src: '/images/gallery/12.jpg', alt: 'Serving with dedication', color: 'from-primary-500 to-primary-700' },
+    { id: 13, src: '/images/gallery/13.jpg', alt: 'Transforming lives through service', color: 'from-primary-300 to-primary-400' },
+    { id: 14, src: '/images/gallery/14.jpg', alt: 'Building a brighter future together', color: 'from-primary-400 to-primary-500' },
   ]
 
   const openLightbox = useCallback((index: number) => {
