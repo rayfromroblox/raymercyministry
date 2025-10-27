@@ -41,8 +41,14 @@ export const metadata: Metadata = {
     description: 'Serving children and families across Kenya with compassion and dignity through feeding programs and community outreach.',
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: [
+      { url: '/images/logo-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/images/logo-64.png', sizes: '64x64', type: 'image/png' },
+      { url: '/images/logo-96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/images/logo-256.png',
+    shortcut: '/favicon-16.png',
   },
 }
 
@@ -54,7 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Google Search Console Verification - Replace YOUR_VERIFICATION_CODE_HERE with the actual code from Google */}
+        <link rel="icon" href="/images/logo-48.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/images/logo-256.png" />
         <meta name="google-site-verification" content="t59QmlN1scjF2bbE5CjX_yIFn48VZuwo3gWDO-BnLiY" />
       </head>
       <body className={poppins.className}>
