@@ -1,15 +1,38 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, memo } from 'react'
+import { useRef, memo, useMemo } from 'react'
 import { FaHeart, FaHandHoldingHeart, FaHome } from 'react-icons/fa'
+
+// Move static data outside component
+const VALUES = [
+  {
+    icon: FaHeart,
+    title: "Compassion",
+    description: "Serving with dignity and respect",
+    color: "from-primary-400 to-primary-500"
+  },
+  {
+    icon: FaHandHoldingHeart,
+    title: "Service",
+    description: "Bi-annual feeding programs and outreach",
+    color: "from-primary-500 to-primary-600"
+  },
+  {
+    icon: FaHome,
+    title: "Hope",
+    description: "Building a future children's home",
+    color: "from-warm-400 to-warm-500"
+  }
+] as const
 
 // About Section Component
 const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const containerVariants = {
+  // Memoize animation variants
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -17,16 +40,16 @@ const About = () => {
         staggerChildren: 0.2
       }
     }
-  }
+  }), [])
 
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }
-  }
+  }), [])
 
   return (
     <section id="about" className="py-12 md:py-20 px-6 md:px-12 lg:px-20 bg-white dark:bg-dark-900 relative" ref={ref}>
@@ -77,26 +100,7 @@ const About = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-6 md:gap-8 mt-16">
-            {[
-              {
-                icon: FaHeart,
-                title: "Compassion",
-                description: "Serving with dignity and respect",
-                color: "from-primary-400 to-primary-500"
-              },
-              {
-                icon: FaHandHoldingHeart,
-                title: "Service",
-                description: "Bi-annual feeding programs and outreach",
-                color: "from-primary-500 to-primary-600"
-              },
-              {
-                icon: FaHome,
-                title: "Hope",
-                description: "Building a future children's home",
-                color: "from-warm-400 to-warm-500"
-              }
-            ].map((value, index) => (
+            {VALUES.map((value, index) => (
               <motion.div
                 key={index}
                 className="group relative bg-white dark:bg-dark-800 p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-dark-700 overflow-hidden"

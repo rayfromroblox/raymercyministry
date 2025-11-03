@@ -1,39 +1,41 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, memo } from 'react'
+import { useRef, memo, useMemo } from 'react'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'
+
+// Move static data outside component
+const CONTACT_INFO = [
+  {
+    icon: FaPhone,
+    title: "Phone",
+    value: "+254 721 826905",
+    link: "tel:+254721826905",
+    gradient: "from-primary-400 to-primary-600"
+  },
+  {
+    icon: FaEnvelope,
+    title: "Email",
+    value: "rachelmacharia80@gmail.com",
+    link: "mailto:rachelmacharia80@gmail.com",
+    gradient: "from-primary-500 to-primary-700"
+  },
+  {
+    icon: FaMapMarkerAlt,
+    title: "Location",
+    value: "Kenya",
+    link: null,
+    gradient: "from-primary-400 to-primary-500"
+  }
+] as const
 
 // Contact Section Component
 const Contact = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const contactInfo = [
-    {
-      icon: FaPhone,
-      title: "Phone",
-      value: "+254 721 826905",
-      link: "tel:+254721826905",
-      gradient: "from-primary-400 to-primary-600"
-    },
-    {
-      icon: FaEnvelope,
-      title: "Email",
-      value: "rachelmacharia80@gmail.com",
-      link: "mailto:rachelmacharia80@gmail.com",
-      gradient: "from-primary-500 to-primary-700"
-    },
-    {
-      icon: FaMapMarkerAlt,
-      title: "Location",
-      value: "Kenya",
-      link: null,
-      gradient: "from-primary-400 to-primary-500"
-    }
-  ]
-
-  const containerVariants = {
+  // Memoize animation variants
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -41,16 +43,16 @@ const Contact = () => {
         staggerChildren: 0.2
       }
     }
-  }
+  }), [])
 
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }
-  }
+  }), [])
 
   return (
     <section id="contact" className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-white via-primary-50 to-white dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 relative" ref={ref}>
@@ -76,7 +78,7 @@ const Contact = () => {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10 max-w-4xl mx-auto">
-                {contactInfo.map((info, index) => (
+                {CONTACT_INFO.map((info, index) => (
                   <div key={index} className="text-center">
                     {info.link ? (
                       <a
