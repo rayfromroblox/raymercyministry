@@ -13,7 +13,7 @@ const GALLERY_IMAGES = [
   { id: 5, src: '/images/gallery/5.jpg', alt: 'Feeding program initiative', color: 'from-primary-400 to-primary-600' },
   { id: 6, src: '/images/gallery/6.jpg', alt: 'Serving the community with love', color: 'from-primary-500 to-primary-700' },
   { id: 7, src: '/images/gallery/7.jpg', alt: 'Ministry work in action', color: 'from-primary-300 to-primary-400' },
-  { id: 8, src: '/images/gallery/8.jpg', alt: 'Making a difference in children lives', color: 'from-primary-400 to-primary-500' },
+  { id: 8, src: '/images/gallery/8.jpg', alt: "Making a difference in children's lives", color: 'from-primary-400 to-primary-500' },
   { id: 9, src: '/images/gallery/9.jpg', alt: 'Spreading hope and joy', color: 'from-primary-500 to-primary-600' },
   { id: 10, src: '/images/gallery/10.jpg', alt: 'Empowering vulnerable communities', color: 'from-primary-300 to-primary-500' },
   { id: 11, src: '/images/gallery/11.jpg', alt: 'Mercy and compassion in action', color: 'from-primary-400 to-primary-600' },
