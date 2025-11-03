@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from 'react'
 
 export type Theme = 'light' | 'dark' | 'system'
 
@@ -26,21 +26,50 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme)
+  const [theme, setThemeState] = useState<Theme>(defaultTheme)
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
+  const [mounted, setMounted] = useState(false)
 
   // Resolve theme based on system preference
-  const resolveTheme = (currentTheme: Theme): 'light' | 'dark' => {
+  const resolveTheme = useCallback((currentTheme: Theme): 'light' | 'dark' => {
     if (currentTheme === 'system') {
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
     return currentTheme
-  }
+  }, [])
+
+  // Optimized setTheme to batch updates
+  const setTheme = useCallback((newTheme: Theme) => {
+    setThemeState(newTheme)
+    // Use requestAnimationFrame to batch DOM updates
+    requestAnimationFrame(() => {
+      localStorage.setItem('theme', newTheme)
+    })
+  }, [])
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme') as Theme
+    if (storedTheme && ['light', 'dark', 'system'].includes(storedTheme)) {
+      setThemeState(storedTheme)
+    }
+    setMounted(true)
+  }, [])
 
   // Update resolved theme when theme or system preference changes
   useEffect(() => {
+    if (!mounted) return
+
     const updateResolvedTheme = () => {
-      setResolvedTheme(resolveTheme(theme))
+      const newResolvedTheme = resolveTheme(theme)
+      setResolvedTheme(newResolvedTheme)
+      
+      // Batch DOM updates using requestAnimationFrame
+      requestAnimationFrame(() => {
+        const root = document.documentElement
+        root.classList.remove('light', 'dark')
+        root.classList.add(newResolvedTheme)
+      })
     }
 
     updateResolvedTheme()
@@ -50,25 +79,7 @@ export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProvid
       mediaQuery.addEventListener('change', updateResolvedTheme)
       return () => mediaQuery.removeEventListener('change', updateResolvedTheme)
     }
-  }, [theme])
-
-  // Apply theme to document
-  useEffect(() => {
-    const root = document.documentElement
-    root.classList.remove('light', 'dark')
-    root.classList.add(resolvedTheme)
-    
-    // Store theme preference
-    localStorage.setItem('theme', theme)
-  }, [resolvedTheme, theme])
-
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme
-    if (storedTheme && ['light', 'dark', 'system'].includes(storedTheme)) {
-      setTheme(storedTheme)
-    }
-  }, [])
+  }, [theme, mounted, resolveTheme])
 
   const value = {
     theme,

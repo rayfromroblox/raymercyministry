@@ -1,32 +1,34 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, memo } from 'react'
+import { useRef, memo, useMemo } from 'react'
 import { FaChild, FaHandsHelping } from 'react-icons/fa'
+
+// Move static data outside component
+const ACTIVITIES = [
+  {
+    icon: FaChild,
+    title: "Children & Family Support",
+    description: "Bi-annual feeding programs serving hundreds of children and families. Regular visits to children's homes providing meals, supplies, and companionship to orphaned and vulnerable children.",
+    image: "children",
+    gradient: "from-primary-400 to-primary-600"
+  },
+  {
+    icon: FaHandsHelping,
+    title: "Community Outreach",
+    description: "Support services for the sick, elderly, and homebound. Holiday celebrations and special event programs bringing hope, gifts, and assistance to communities in need.",
+    image: "outreach",
+    gradient: "from-primary-500 to-primary-700"
+  }
+] as const
 
 // Activities Section Component
 const Activities = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const activities = [
-    {
-      icon: FaChild,
-      title: "Children & Family Support",
-      description: "Bi-annual feeding programs serving hundreds of children and families. Regular visits to children's homes providing meals, supplies, and companionship to orphaned and vulnerable children.",
-      image: "children",
-      gradient: "from-primary-400 to-primary-600"
-    },
-    {
-      icon: FaHandsHelping,
-      title: "Community Outreach",
-      description: "Support services for the sick, elderly, and homebound. Holiday celebrations and special event programs bringing hope, gifts, and assistance to communities in need.",
-      image: "outreach",
-      gradient: "from-primary-500 to-primary-700"
-    }
-  ]
-
-  const containerVariants = {
+  // Memoize animation variants
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -34,16 +36,16 @@ const Activities = () => {
         staggerChildren: 0.2
       }
     }
-  }
+  }), [])
 
-  const cardVariants = {
+  const cardVariants = useMemo(() => ({
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }
-  }
+  }), [])
 
   return (
     <section id="activities" className="py-12 md:py-20 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-white via-primary-50 to-white dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 relative" ref={ref}>
@@ -61,7 +63,7 @@ const Activities = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {activities.map((activity, index) => (
+            {ACTIVITIES.map((activity, index) => (
               <motion.div
                 key={index}
                 variants={cardVariants}

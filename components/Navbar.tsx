@@ -1,18 +1,26 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect, memo, useCallback } from 'react'
+import { useState, useEffect, memo, useCallback, useRef } from 'react'
 import ThemeToggle from './ThemeToggle'
 
 // Navbar Component
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const ticking = useRef(false)
   
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50)
+          ticking.current = false
+        })
+        ticking.current = true
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
