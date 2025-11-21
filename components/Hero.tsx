@@ -65,7 +65,7 @@ const Hero = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-secondary-400 rounded-full" />
-              <span>500+ Children Fed</span>
+              <span>100+ Children Fed</span>
             </div>
           </div>
         </motion.div>

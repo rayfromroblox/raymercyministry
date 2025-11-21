@@ -17,7 +17,7 @@ const Activities = () => {
       frequency: "Twice Yearly",
       description: "We serve nutritious meals to hundreds of children and families during our bi-annual feeding programs. Each meal is prepared with love and served with dignity.",
       mobileDescription: "Nutritious meals for hundreds twice a year",
-      impact: "500+ children fed per program"
+      impact: "100+ children fed per program"
     },
     {
       icon: FaChild,
