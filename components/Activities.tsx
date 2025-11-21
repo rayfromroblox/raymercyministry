@@ -16,6 +16,7 @@ const Activities = () => {
       title: "Feeding Programs",
       frequency: "Twice Yearly",
       description: "We serve nutritious meals to hundreds of children and families during our bi-annual feeding programs. Each meal is prepared with love and served with dignity.",
+      mobileDescription: "Nutritious meals for hundreds twice a year",
       impact: "500+ children fed per program"
     },
     {
@@ -23,6 +24,7 @@ const Activities = () => {
       title: "Children's Home Visits",
       frequency: "Regular",
       description: "Regular visits to children's homes where we provide meals, essential supplies, and spend quality time with orphaned and vulnerable children.",
+      mobileDescription: "Meals, supplies, and love for orphaned kids",
       impact: "Building lasting relationships"
     },
     {
@@ -30,6 +32,7 @@ const Activities = () => {
       title: "Community Support",
       frequency: "Ongoing",
       description: "Reaching out to the sick, elderly, and homebound in our communities with practical support and compassionate care.",
+      mobileDescription: "Caring for the sick, elderly, and homebound",
       impact: "Multiple communities served"
     },
     {
@@ -37,6 +40,7 @@ const Activities = () => {
       title: "Holiday Celebrations",
       frequency: "Seasonal",
       description: "Special holiday programs bringing joy, gifts, and hope to families in need during Christmas and other significant occasions.",
+      mobileDescription: "Bringing joy during holidays",
       impact: "Creating cherished memories"
     }
   ]
@@ -106,7 +110,7 @@ const Activities = () => {
                         </div>
                       </div>
                       <p className="text-gray-600 dark:text-dark-300 text-sm leading-relaxed mb-2">
-                        {program.description}
+                        {program.mobileDescription}
                       </p>
                       <p className="text-sm font-medium text-primary-700 dark:text-primary-300 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>

@@ -54,9 +54,15 @@ const Contact = () => {
               Together, We Can Make a Difference
             </h2>
 
+            {/* Mobile: Short version, Desktop: Full version */}
             <p className="text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed mb-3 md:mb-4 px-2">
-              Every call, every email, every connection brings us closer to changing a child's life.
-              Your support, whether big or small, plants seeds of hope in vulnerable communities across Kenya.
+              <span className="md:hidden">
+                Your support plants seeds of hope in vulnerable communities across Kenya.
+              </span>
+              <span className="hidden md:inline">
+                Every call, every email, every connection brings us closer to changing a child's life.
+                Your support, whether big or small, plants seeds of hope in vulnerable communities across Kenya.
+              </span>
             </p>
 
             <p className="text-primary-700 dark:text-primary-300 font-medium italic text-base md:text-lg">

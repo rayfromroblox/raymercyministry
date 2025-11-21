@@ -15,6 +15,7 @@ const About = () => {
       icon: FaHeart,
       title: "Compassion",
       description: "Serving with dignity and respect, showing Christ's love to every person we encounter",
+      mobileDescription: "Showing love with dignity and respect",
       color: "from-pink-500 to-rose-600",
       bgColor: "bg-gradient-to-br from-pink-50 to-rose-100 dark:from-pink-900/20 dark:to-rose-900/30"
     },
@@ -22,6 +23,7 @@ const About = () => {
       icon: FaHandHoldingHeart,
       title: "Service",
       description: "Bi-annual feeding programs and outreach, meeting practical needs with excellence",
+      mobileDescription: "Meeting needs with excellence",
       color: "from-primary-500 to-primary-700",
       bgColor: "bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/30"
     },
@@ -29,6 +31,7 @@ const About = () => {
       icon: FaSeedling,
       title: "Hope",
       description: "Building a future children's home and nurturing dreams for tomorrow",
+      mobileDescription: "Building dreams for tomorrow",
       color: "from-secondary-500 to-amber-600",
       bgColor: "bg-gradient-to-br from-secondary-50 to-amber-100 dark:from-secondary-900/20 dark:to-amber-900/30"
     }
@@ -60,7 +63,7 @@ const About = () => {
           {/* Mission & Vision - Mobile Expandable */}
           <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-10 lg:gap-16 mb-12 md:mb-20">
             {/* Mission */}
-            <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-0 md:bg-transparent shadow-md md:shadow-none">
+            <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-md md:shadow-none">
               <button
                 onClick={() => toggleSection('mission')}
                 className="w-full flex items-center justify-between md:cursor-default"
@@ -74,8 +77,13 @@ const About = () => {
                 <FaChevronDown className={`md:hidden w-5 h-5 text-primary-600 transition-transform ${expandedSection === 'mission' ? 'rotate-180' : ''}`} />
               </button>
 
-              <div className={`mt-4 space-y-4 md:mt-6 md:block ${expandedSection === 'mission' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
-                <p className="text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
+              <div className={`mt-4 space-y-4 md:mt-6 md:space-y-6 md:block ${expandedSection === 'mission' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
+                {/* Mobile: Short version */}
+                <p className="md:hidden text-gray-700 dark:text-dark-200 text-base leading-relaxed">
+                  Feeding families across Kenya twice yearly with meals and support.
+                </p>
+                {/* Desktop: Full version */}
+                <p className="hidden md:block text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
                   We serve vulnerable children and families through feeding programs and community outreach.
                   Twice yearly, we provide meals and support to those in need across Kenya.
                 </p>
@@ -90,7 +98,7 @@ const About = () => {
             </div>
 
             {/* Vision */}
-            <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-0 md:bg-transparent shadow-md md:shadow-none">
+            <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-md md:shadow-none">
               <button
                 onClick={() => toggleSection('vision')}
                 className="w-full flex items-center justify-between md:cursor-default"
@@ -104,8 +112,13 @@ const About = () => {
                 <FaChevronDown className={`md:hidden w-5 h-5 text-primary-600 transition-transform ${expandedSection === 'vision' ? 'rotate-180' : ''}`} />
               </button>
 
-              <div className={`mt-4 space-y-4 md:mt-6 md:block ${expandedSection === 'vision' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
-                <p className="text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
+              <div className={`mt-4 space-y-4 md:mt-6 md:space-y-6 md:block ${expandedSection === 'vision' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
+                {/* Mobile: Short version */}
+                <p className="md:hidden text-gray-700 dark:text-dark-200 text-base leading-relaxed">
+                  Building a children's home for orphaned and vulnerable kids in Kenya.
+                </p>
+                {/* Desktop: Full version */}
+                <p className="hidden md:block text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
                   To establish a children's home providing safety, education, and care for orphaned and
                   vulnerable children in Kenya.
                 </p>
@@ -142,7 +155,7 @@ const About = () => {
 
                     <div className="flex-1 min-w-0">
                       <h4 className="text-lg font-serif font-bold text-gray-900 dark:text-white mb-1">{value.title}</h4>
-                      <p className="text-gray-700 dark:text-dark-200 leading-snug text-xs line-clamp-2">{value.description}</p>
+                      <p className="text-gray-700 dark:text-dark-200 leading-snug text-sm">{value.mobileDescription}</p>
                     </div>
 
                     <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${value.color}`} />
