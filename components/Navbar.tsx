@@ -112,7 +112,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Full-Screen Mobile Menu */}
+      {/* Full-Screen Mobile Menu - Scrollable */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -120,11 +120,11 @@ const Navbar = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-[100] md:hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 dark:from-dark-900 dark:via-dark-950 dark:to-black"
+            className="fixed inset-0 z-[100] md:hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 dark:from-dark-900 dark:via-dark-950 dark:to-black overflow-y-auto"
           >
-            <div className="flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <div className="min-h-full flex flex-col">
+              {/* Header - Sticky */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10 sticky top-0 bg-primary-700/95 dark:bg-dark-950/95 backdrop-blur-sm z-10">
                 <img
                   src="/images/logo.png"
                   alt="Ray Mercy Ministry"
@@ -139,8 +139,16 @@ const Navbar = () => {
                 </button>
               </div>
 
+              {/* Theme Toggle - Prominent Position */}
+              <div className="p-6 border-b border-white/10">
+                <div className="flex items-center justify-between">
+                  <span className="text-white font-semibold">Theme</span>
+                  <ThemeToggle isScrolled={true} />
+                </div>
+              </div>
+
               {/* Navigation Links */}
-              <nav className="flex-1 flex flex-col justify-center px-8 space-y-2">
+              <nav className="flex-1 px-8 py-6 space-y-2">
                 {navLinks.map((link, index) => (
                   <motion.button
                     key={link.id}
@@ -148,7 +156,7 @@ const Navbar = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="group text-left py-5 border-b border-white/10 last:border-0"
+                    className="group text-left py-5 border-b border-white/10 last:border-0 w-full"
                   >
                     <span className="text-3xl font-serif font-bold text-white group-hover:text-secondary-300 transition-colors">
                       {link.name}
@@ -158,17 +166,14 @@ const Navbar = () => {
                 ))}
               </nav>
 
-              {/* Footer */}
-              <div className="p-6 border-t border-white/10">
-                <div className="flex justify-between items-center">
-                  <ThemeToggle isScrolled={true} />
-                  <a
-                    href="tel:+254721826905"
-                    className="px-6 py-3 bg-secondary-500 hover:bg-secondary-400 text-white font-semibold rounded-full transition-colors"
-                  >
-                    Call Now
-                  </a>
-                </div>
+              {/* Footer - Sticky */}
+              <div className="p-6 border-t border-white/10 sticky bottom-0 bg-primary-700/95 dark:bg-dark-950/95 backdrop-blur-sm">
+                <a
+                  href="tel:+254721826905"
+                  className="block w-full px-6 py-4 bg-secondary-500 hover:bg-secondary-400 text-white font-semibold rounded-full transition-colors text-center"
+                >
+                  Call Now
+                </a>
               </div>
             </div>
           </motion.div>
