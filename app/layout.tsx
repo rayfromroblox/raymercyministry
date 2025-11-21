@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Playfair_Display } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import './globals.css'
 
-const poppins = Poppins({ 
-  weight: ['300', '400', '500', '600', '700'],
+const playfair = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-playfair',
 })
 
 export const metadata: Metadata = {
@@ -65,7 +65,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/logo-256.png" />
         <meta name="google-site-verification" content="t59QmlN1scjF2bbE5CjX_yIFn48VZuwo3gWDO-BnLiY" />
       </head>
-      <body className={poppins.className}>
+      <body className={`${playfair.variable} font-sans`}>
         <ThemeProvider defaultTheme="system">
           {children}
         </ThemeProvider>
@@ -73,4 +73,3 @@ export default function RootLayout({
     </html>
   )
 }
-

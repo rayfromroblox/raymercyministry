@@ -4,32 +4,32 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useState } from 'react'
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ isScrolled = true }: { isScrolled?: boolean }) => {
   const { theme, setTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
 
   const themes = [
-    { 
-      value: 'light' as const, 
-      label: 'Light', 
+    {
+      value: 'light' as const,
+      label: 'Light',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
       )
     },
-    { 
-      value: 'dark' as const, 
-      label: 'Dark', 
+    {
+      value: 'dark' as const,
+      label: 'Dark',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>
       )
     },
-    { 
-      value: 'system' as const, 
-      label: 'System', 
+    {
+      value: 'system' as const,
+      label: 'System',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -45,7 +45,10 @@ const ThemeToggle = () => {
       {/* Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 dark:bg-dark-800/50 backdrop-blur-sm border border-white/20 dark:border-dark-700/50 text-gray-700 dark:text-dark-200 hover:bg-white/20 dark:hover:bg-dark-700/50 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500/50"
+        className={`relative flex items-center gap-2 px-3 py-2 rounded-full backdrop-blur-sm border transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${isScrolled
+            ? 'bg-white/10 dark:bg-dark-800/50 border-white/20 dark:border-dark-700/50 text-gray-700 dark:text-dark-200 hover:bg-white/20 dark:hover:bg-dark-700/50'
+            : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
+          }`}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -91,19 +94,17 @@ const ThemeToggle = () => {
                   setTheme(themeOption.value)
                   setIsOpen(false)
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 group ${
-                  theme === themeOption.value
-                    ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
-                    : 'text-gray-700 dark:text-dark-200 hover:bg-gray-50 dark:hover:bg-dark-700/50'
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 group ${theme === themeOption.value
+                  ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
+                  : 'text-gray-700 dark:text-dark-200 hover:bg-gray-50 dark:hover:bg-dark-700/50'
+                  }`}
                 whileHover={{ x: 4 }}
               >
                 <motion.div
-                  className={`transition-colors duration-200 ${
-                    theme === themeOption.value
-                      ? 'text-primary-600 dark:text-primary-400'
-                      : 'text-gray-500 dark:text-dark-400 group-hover:text-gray-700 dark:group-hover:text-dark-200'
-                  }`}
+                  className={`transition-colors duration-200 ${theme === themeOption.value
+                    ? 'text-primary-600 dark:text-primary-400'
+                    : 'text-gray-500 dark:text-dark-400 group-hover:text-gray-700 dark:group-hover:text-dark-200'
+                    }`}
                 >
                   {themeOption.icon}
                 </motion.div>

@@ -26,7 +26,7 @@
 
 @layer components {
   .btn-primary {
-    @apply px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] hover:from-primary-600 hover:to-primary-700;
+    @apply px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
     letter-spacing: 0.01em;
   }
   
@@ -43,15 +43,15 @@
   }
   
   .heading-primary {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-dark-100 tracking-tight leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-gray-900 dark:text-dark-50 tracking-tight leading-tight;
   }
   
   .heading-secondary {
-    @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-dark-100 tracking-tight leading-tight;
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold font-serif text-gray-900 dark:text-dark-50 tracking-tight leading-tight;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent;
   }
   
   /* Card hover animations */

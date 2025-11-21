@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 import ScrollProgress from '@/components/ScrollProgress'
 import Hero from '@/components/Hero'
 
-const About = dynamic(() => import('@/components/About'), { 
+const About = dynamic(() => import('@/components/About'), {
   loading: () => <div className="h-screen" />
 })
 const Activities = dynamic(() => import('@/components/Activities'), {
@@ -26,8 +26,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <Activities />
       <Gallery />
+      <Activities />
       <Contact />
       <Footer />
     </main>
