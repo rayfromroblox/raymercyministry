@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState, memo, useCallback } from 'react'
 import { FaTimes, FaChevronLeft, FaChevronRight, FaImages } from 'react-icons/fa'
 
-// Gallery Section Component
+// Photo gallery with a lightbox experience
 const Gallery = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })

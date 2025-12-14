@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { memo, useCallback } from 'react'
-
-// Hero Section Component
 const Hero = () => {
   const scrollToAbout = useCallback(() => {
     const aboutSection = document.getElementById('about')
@@ -12,7 +10,7 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative h-screen md:h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Backdrop photo with a soft gradient */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{
@@ -29,7 +27,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col items-center max-w-4xl mx-auto"
         >
-          {/* Logo - Larger on mobile */}
+          {/* Logo takes center stage on small screens */}
           <div className="mb-6 md:mb-8">
             <img
               src="/images/logo.png"
@@ -39,17 +37,17 @@ const Hero = () => {
             />
           </div>
 
-          {/* Heading - Optimized for mobile readability */}
+          {/* Main heading stays legible on any screen */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4 md:mb-6 text-white drop-shadow-lg leading-tight">
             Bringing Hope to the <span className="text-secondary-400 italic block sm:inline mt-2 sm:mt-0">Vulnerable</span>
           </h1>
 
-          {/* Subtext - Better mobile typography */}
+          {/* Supporting copy with friendlier spacing */}
           <p className="text-lg sm:text-xl md:text-2xl font-light text-gray-100 mb-8 md:mb-10 max-w-2xl leading-relaxed px-4">
             Serving children and families across Kenya with compassion, dignity, and unwavering love.
           </p>
 
-          {/* CTA - Large touch target */}
+          {/* Big tap-friendly CTA */}
           <button
             onClick={scrollToAbout}
             className="w-full sm:w-auto min-w-[200px] px-8 md:px-10 py-4 md:py-5 bg-secondary-500 hover:bg-secondary-400 active:bg-secondary-600 text-white text-base md:text-lg font-semibold rounded-lg shadow-xl transition-colors duration-300 tracking-wide uppercase"
@@ -57,7 +55,7 @@ const Hero = () => {
             Our Mission
           </button>
 
-          {/* Mobile-specific trust indicators */}
+          {/* Quick stats for credibility */}
           <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-6 text-white/80 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-secondary-400 rounded-full" />
@@ -71,7 +69,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator - Hidden on mobile */}
+      {/* Scroll hint we hide on phones */}
       <div className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2">
         <span className="text-white/60 text-xs uppercase tracking-widest">Scroll</span>
         <div className="w-px h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />

@@ -3,7 +3,7 @@
 import { memo } from 'react'
 import { FaHeart } from 'react-icons/fa'
 
-// Footer Component
+// Footer with a closing scripture reminder
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 

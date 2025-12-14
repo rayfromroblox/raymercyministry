@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, memo, useCallback } from 'react'
 import ThemeToggle from './ThemeToggle'
 import { FaTimes } from 'react-icons/fa'
-
-// Navbar Component
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -21,7 +19,7 @@ const Navbar = () => {
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId)
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setIsMobileMenuOpen(false) // Close menu after navigation
+    setIsMobileMenuOpen(false) // Collapse the drawer once a section is chosen
   }, [])
 
   const navLinks = [
@@ -65,7 +63,7 @@ const Navbar = () => {
               </span>
             </motion.button>
 
-            {/* Desktop Navigation */}
+            {/* Desktop links stay visible here */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <motion.button
@@ -89,7 +87,7 @@ const Navbar = () => {
                 <ThemeToggle isScrolled={isScrolled} />
               </div>
 
-              {/* Mobile Menu Button */}
+              {/* Hamburger button for smaller screens */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
                 className={`md:hidden p-2 transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'}`}
@@ -112,7 +110,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Full-Screen Mobile Menu - Scrollable */}
+      {/* Full-height mobile drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -123,7 +121,7 @@ const Navbar = () => {
             className="fixed inset-0 z-[100] md:hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 dark:from-dark-900 dark:via-dark-950 dark:to-black overflow-y-auto"
           >
             <div className="min-h-full flex flex-col">
-              {/* Header - Sticky */}
+              {/* Drawer header stays pinned */}
               <div className="flex items-center justify-between p-6 border-b border-white/10 sticky top-0 bg-primary-700/95 dark:bg-dark-950/95 backdrop-blur-sm z-10">
                 <img
                   src="/images/logo.png"
@@ -139,7 +137,7 @@ const Navbar = () => {
                 </button>
               </div>
 
-              {/* Theme Toggle - Prominent Position */}
+              {/* Make theme switching easy on mobile */}
               <div className="p-6 border-b border-white/10">
                 <div className="flex items-center justify-between">
                   <span className="text-white font-semibold">Theme</span>
@@ -147,7 +145,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Navigation Links */}
+              {/* Oversized links for comfy tapping */}
               <nav className="flex-1 px-8 py-6 space-y-2">
                 {navLinks.map((link, index) => (
                   <motion.button
@@ -166,7 +164,7 @@ const Navbar = () => {
                 ))}
               </nav>
 
-              {/* Footer - Sticky */}
+              {/* Keep the call-to-action within reach */}
               <div className="p-6 border-t border-white/10 sticky bottom-0 bg-primary-700/95 dark:bg-dark-950/95 backdrop-blur-sm">
                 <a
                   href="tel:+254721826905"

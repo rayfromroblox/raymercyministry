@@ -29,7 +29,7 @@ export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProvid
   const [theme, setTheme] = useState<Theme>(defaultTheme)
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
 
-  // Resolve theme based on system preference
+  // Figure out the actual palette, leaning on the OS when set to system
   const resolveTheme = (currentTheme: Theme): 'light' | 'dark' => {
     if (currentTheme === 'system') {
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -37,7 +37,7 @@ export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProvid
     return currentTheme
   }
 
-  // Update resolved theme when theme or system preference changes
+  // Keep resolvedTheme synced with the local choice and OS setting
   useEffect(() => {
     const updateResolvedTheme = () => {
       setResolvedTheme(resolveTheme(theme))
@@ -52,17 +52,17 @@ export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProvid
     }
   }, [theme])
 
-  // Apply theme to document
+  // Flip the root class so Tailwind knows which palette to use
   useEffect(() => {
     const root = document.documentElement
     root.classList.remove('light', 'dark')
     root.classList.add(resolvedTheme)
     
-    // Store theme preference
+    // Remember the choice for next time
     localStorage.setItem('theme', theme)
   }, [resolvedTheme, theme])
 
-  // Load theme from localStorage on mount
+  // Pull any saved preference on mount
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme
     if (storedTheme && ['light', 'dark', 'system'].includes(storedTheme)) {

@@ -4,7 +4,7 @@ import { useInView } from 'framer-motion'
 import { useRef, memo, useState } from 'react'
 import { FaHeart, FaHandHoldingHeart, FaSeedling, FaChevronDown } from 'react-icons/fa'
 
-// About Section Component
+// About section sharing our mission, vision and values
 const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -43,13 +43,13 @@ const About = () => {
 
   return (
     <section id="about" className="py-12 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 bg-gradient-to-b from-white via-neutral-50 to-white dark:from-dark-950 dark:via-dark-900 dark:to-dark-950 relative overflow-hidden" ref={ref}>
-      {/* Decorative elements */}
+      {/* Soft glowing background accents */}
       <div className="absolute top-20 right-0 w-64 md:w-96 h-64 md:h-96 bg-primary-200/30 dark:bg-primary-800/10 rounded-full blur-3xl" />
       <div className="absolute bottom-40 left-0 w-56 md:w-80 h-56 md:h-80 bg-secondary-200/30 dark:bg-secondary-800/10 rounded-full blur-3xl" />
 
       <div className="container-custom relative z-10">
         <div className={`transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Header */}
+          {/* Section intro */}
           <div className="text-center mb-12 md:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-primary-900 dark:text-primary-100 mb-4">
               About Us
@@ -60,9 +60,9 @@ const About = () => {
             </p>
           </div>
 
-          {/* Mission & Vision - Mobile Expandable */}
+          {/* Mission and vision cards become accordions on mobile */}
           <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-10 lg:gap-16 mb-12 md:mb-20">
-            {/* Mission */}
+            {/* Mission card */}
             <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-md md:shadow-none">
               <button
                 onClick={() => toggleSection('mission')}
@@ -78,11 +78,11 @@ const About = () => {
               </button>
 
               <div className={`mt-4 space-y-4 md:mt-6 md:space-y-6 md:block ${expandedSection === 'mission' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
-                {/* Mobile: Short version */}
+                {/* Short version for phones */}
                 <p className="md:hidden text-gray-700 dark:text-dark-200 text-base leading-relaxed">
                   Feeding families across Kenya twice yearly with meals and support.
                 </p>
-                {/* Desktop: Full version */}
+                {/* Full paragraph for larger screens */}
                 <p className="hidden md:block text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
                   We serve vulnerable children and families through feeding programs and community outreach.
                   Twice yearly, we provide meals and support to those in need across Kenya.
@@ -97,7 +97,7 @@ const About = () => {
               </div>
             </div>
 
-            {/* Vision */}
+            {/* Vision card */}
             <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-md md:shadow-none">
               <button
                 onClick={() => toggleSection('vision')}
@@ -113,11 +113,11 @@ const About = () => {
               </button>
 
               <div className={`mt-4 space-y-4 md:mt-6 md:space-y-6 md:block ${expandedSection === 'vision' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
-                {/* Mobile: Short version */}
+                {/* Short version for phones */}
                 <p className="md:hidden text-gray-700 dark:text-dark-200 text-base leading-relaxed">
                   Building a children's home for orphaned and vulnerable kids in Kenya.
                 </p>
-                {/* Desktop: Full version */}
+                {/* Full paragraph for larger screens */}
                 <p className="hidden md:block text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
                   To establish a children's home providing safety, education, and care for orphaned and
                   vulnerable children in Kenya.
@@ -132,7 +132,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Core Values - Mobile Compact, Desktop Full */}
+          {/* Core values shrink on mobile and stretch out on desktop */}
           <div className="mt-12 md:mt-24">
             <div className="text-center mb-6 md:mb-12">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-dark-50 mb-2 md:mb-3">Our Core Values</h3>
@@ -145,7 +145,7 @@ const About = () => {
                   key={index}
                   className="group relative active:scale-95 md:hover:-translate-y-2 transition-transform duration-300"
                 >
-                  {/* Mobile: Compact Horizontal Card */}
+                  {/* Compact mobile card */}
                   <div className={`md:hidden relative ${value.bgColor} p-4 rounded-xl overflow-hidden flex items-center gap-4`}>
                     <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-active:opacity-20 transition-opacity duration-300`} />
 
@@ -161,7 +161,7 @@ const About = () => {
                     <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${value.color}`} />
                   </div>
 
-                  {/* Desktop: Full Card */}
+                  {/* Full-sized desktop card */}
                   <div className={`hidden md:block relative ${value.bgColor} p-8 rounded-3xl overflow-hidden min-h-[280px]`}>
                     <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
 

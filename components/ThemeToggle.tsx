@@ -42,7 +42,7 @@ const ThemeToggle = ({ isScrolled = true }: { isScrolled?: boolean }) => {
 
   return (
     <div className="relative">
-      {/* Toggle Button */}
+      {/* Button that opens the theme picker */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className={`relative flex items-center gap-2 px-3 py-2 rounded-full backdrop-blur-sm border transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${isScrolled
@@ -76,7 +76,7 @@ const ThemeToggle = ({ isScrolled = true }: { isScrolled?: boolean }) => {
         </motion.svg>
       </motion.button>
 
-      {/* Dropdown Menu */}
+      {/* Theme picker menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

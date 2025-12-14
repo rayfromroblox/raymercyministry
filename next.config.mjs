@@ -1,4 +1,7 @@
-/** @type {import('next').NextConfig} */
+/**
+ * Next.js config kept small and export-friendly.
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   output: 'export',
   images: {

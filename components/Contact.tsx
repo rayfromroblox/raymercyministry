@@ -4,7 +4,7 @@ import { useInView } from 'framer-motion'
 import { useRef, memo } from 'react'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart } from 'react-icons/fa'
 
-// Contact Section Component
+// Contact section with a friendly CTA
 const Contact = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -35,14 +35,14 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-12 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 relative overflow-hidden" ref={ref}>
-      {/* Background */}
+      {/* Soft gradient backdrop */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-neutral-50 dark:from-dark-950 dark:to-dark-900" />
       <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-secondary-200/30 dark:bg-secondary-800/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-56 md:w-80 h-56 md:h-80 bg-primary-200/30 dark:bg-primary-800/10 rounded-full blur-3xl" />
 
       <div className="container-custom relative z-10">
         <div className={`transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Header */}
+          {/* Section header */}
           <div className="text-center mb-10 md:mb-16 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 mb-4 md:mb-6">
               <FaHeart className="text-secondary-500 text-xl md:text-2xl animate-pulse" />
@@ -54,7 +54,7 @@ const Contact = () => {
               Together, We Can Make a Difference
             </h2>
 
-            {/* Mobile: Short version, Desktop: Full version */}
+            {/* Short copy for phones, fuller story for desktops */}
             <p className="text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed mb-3 md:mb-4 px-2">
               <span className="md:hidden">
                 Your support plants seeds of hope in vulnerable communities across Kenya.
@@ -70,7 +70,7 @@ const Contact = () => {
             </p>
           </div>
 
-          {/* Contact Cards - Mobile: Stacked, Desktop: Grid */}
+          {/* Contact cards adapt to whatever layout is available */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12 max-w-4xl mx-auto">
             {contactInfo.map((info, index) => (
               <div key={index}>
@@ -113,7 +113,7 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* CTA Box */}
+          {/* Highlight the main call-to-action */}
           <div className="text-center">
             <div className="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-2xl p-6 md:p-8 max-w-2xl w-full border border-primary-200/50 dark:border-primary-700/50">
               <h3 className="text-2xl md:text-3xl font-serif font-bold text-gray-900 dark:text-white mb-3 md:mb-4">
@@ -123,7 +123,7 @@ const Contact = () => {
                 Reach out to learn how you can support our feeding programs, sponsor a child, or volunteer your time
               </p>
 
-              {/* Mobile: Stacked buttons, Desktop: Side by side */}
+              {/* Stack the buttons on phones, line them up on desktop */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                 <a
                   href="tel:+254721826905"

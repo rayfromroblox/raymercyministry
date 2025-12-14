@@ -9,7 +9,7 @@ interface LazyImageProps {
   style?: React.CSSProperties
 }
 
-// Lazy loading image component
+// Only load the image once it is about to enter the viewport
 export default function LazyImage({ src, alt, className = '', style }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)

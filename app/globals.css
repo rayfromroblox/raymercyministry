@@ -13,12 +13,12 @@
     @apply bg-white dark:bg-dark-950 text-gray-800 dark:text-dark-100 transition-colors duration-300;
   }
   
-  /* Focus states for accessibility */
+  /* Make focused elements obvious for keyboard users */
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-primary-500 dark:outline-primary-400 rounded-sm;
   }
   
-  /* Text selection color */
+  /* Friendly highlight color when folks select text */
   ::selection {
     @apply bg-primary-200 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
   }
@@ -54,7 +54,7 @@
     @apply bg-gradient-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent;
   }
   
-  /* Card hover animations */
+  /* Gentle hover lift for cards */
   .card-hover {
     @apply transition-all duration-500 ease-out;
   }
@@ -63,7 +63,7 @@
     @apply transform -translate-y-2;
   }
   
-  /* Reveal animation */
+  /* Simple fade-up animation */
   @keyframes reveal {
     from {
       opacity: 0;
@@ -79,7 +79,7 @@
     animation: reveal 0.6s ease-out forwards;
   }
   
-  /* Logo dark mode fix */
+  /* Keep the logo readable over dark backgrounds */
   .logo-blend {
     mix-blend-mode: multiply;
   }
@@ -89,7 +89,7 @@
   }
 }
 
-/* Glassmorphism effect */
+/* Optional glass backdrop */
 @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
   .glass-nav {
     background: rgba(255, 255, 255, 0.7);
@@ -98,14 +98,14 @@
   }
 }
 
-/* Scroll behavior */
+/* Guardrails for smooth scrolling */
 @supports (scroll-behavior: smooth) {
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* Custom scrollbar */
+/* Slim custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -122,14 +122,14 @@
   @apply from-primary-500 to-primary-600;
 }
 
-/* Page transitions */
+/* Softer page transitions */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* Image loading */
+/* Tidy image loading tweaks */
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;

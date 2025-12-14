@@ -4,11 +4,11 @@ import { useInView } from 'framer-motion'
 import { useRef, memo, useState } from 'react'
 import { FaChild, FaHandsHelping, FaUtensils, FaGift, FaChevronDown } from 'react-icons/fa'
 
-// Activities Section Component
+// Programs overview section
 const Activities = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [isExpanded, setIsExpanded] = useState(false) // Collapsed by default on mobile
+  const [isExpanded, setIsExpanded] = useState(false) // Start collapsed on phones
 
   const programs = [
     {
@@ -49,7 +49,7 @@ const Activities = () => {
     <section id="activities" className="py-12 md:py-24 px-4 sm:px-6 md:px-12 lg:px-20 bg-white dark:bg-dark-950" ref={ref}>
       <div className="container-custom">
         <div className={`transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Header */}
+          {/* Section intro */}
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-primary-900 dark:text-primary-100 mb-4">
               Our Programs
@@ -60,9 +60,9 @@ const Activities = () => {
             </p>
           </div>
 
-          {/* Mobile: Collapsed Summary, Desktop: Full Grid */}
+          {/* Collapsed on phones, fully visible on desktop */}
           <div className="max-w-5xl mx-auto">
-            {/* Mobile Expandable Container */}
+            {/* Mobile drawer */}
             <div className="md:hidden bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-md">
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
@@ -74,7 +74,7 @@ const Activities = () => {
                 <FaChevronDown className={`w-5 h-5 text-primary-600 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Mobile Summary - Always Visible */}
+              {/* Summary that stays visible when collapsed */}
               {!isExpanded && (
                 <div className="space-y-3">
                   {programs.map((program, index) => (
@@ -91,7 +91,7 @@ const Activities = () => {
                 </div>
               )}
 
-              {/* Mobile Expanded - Details */}
+              {/* Full details when expanded */}
               {isExpanded && (
                 <div className="space-y-4">
                   {programs.map((program, index) => (
@@ -122,7 +122,7 @@ const Activities = () => {
               )}
             </div>
 
-            {/* Desktop Grid - Always Visible */}
+            {/* Desktop grid never collapses */}
             <div className="hidden md:grid md:grid-cols-2 gap-8">
               {programs.map((program, index) => (
                 <div
@@ -158,7 +158,7 @@ const Activities = () => {
             </div>
           </div>
 
-          {/* CTA */}
+          {/* Invite people to connect */}
           <div className="mt-10 md:mt-16 text-center">
             <div className="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-2xl p-6 md:p-8 max-w-2xl w-full border border-primary-200/50 dark:border-primary-700/50">
               <p className="text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed mb-6">

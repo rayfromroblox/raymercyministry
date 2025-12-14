@@ -3,7 +3,7 @@
 import { motion, useScroll } from 'framer-motion'
 import { memo } from 'react'
 
-// Scroll Progress Bar
+// Thin bar that shows how far down the page you are
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll()
 
