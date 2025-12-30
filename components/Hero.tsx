@@ -29,7 +29,7 @@ const Hero = () => {
               <div className="h-px w-8 md:w-12 bg-[#C85A4A]" />
             </motion.div>
 
-            <h1 className="text-5xl xs:text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif leading-[0.9] text-[#1A1A1A] text-balance">
+            <h1 className="text-4xl xs:text-5xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif leading-[0.9] text-[#1A1A1A] text-balance">
               Every child
               <span className="block mt-1 md:mt-2">deserves</span>
               <span className="block text-[#C85A4A] italic font-normal mt-2 md:mt-3">to be seen.</span>
@@ -39,7 +39,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-2xl text-[#4A4A4A] leading-[1.6] md:leading-[1.7] max-w-2xl font-light"
+              className="text-base md:text-xl lg:text-2xl text-[#4A4A4A] leading-[1.6] md:leading-[1.7] max-w-2xl font-light"
             >
               We're a small team in Kenya, showing up twice a year to provide nourishing meals and care to families who need it most.
             </motion.p>
@@ -48,7 +48,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 pt-2"
+              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-6 pt-2"
             >
               <button
                 onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
@@ -69,15 +69,15 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex gap-10 md:gap-16 pt-10 md:pt-12 justify-center lg:justify-start border-t border-[#E0E0E0]/60 w-full"
+              className="flex gap-10 md:gap-16 pt-8 md:pt-12 justify-center lg:justify-start border-t border-[#E0E0E0]/60 w-full"
             >
               <div>
-                <div className="text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-1 md:mb-2 leading-none">100+</div>
-                <div className="text-[0.6rem] md:text-xs text-[#6A6A6A] font-medium uppercase tracking-widest">Children</div>
+                <div className="text-4xl md:text-7xl font-serif text-[#1A1A1A] mb-1 md:mb-2 leading-none">100+</div>
+                <div className="text-[10px] md:text-xs text-[#6A6A6A] font-medium uppercase tracking-widest">Children</div>
               </div>
               <div>
-                <div className="text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-1 md:mb-2 leading-none">2x</div>
-                <div className="text-[0.6rem] md:text-xs text-[#6A6A6A] font-medium uppercase tracking-widest">Per Year</div>
+                <div className="text-4xl md:text-7xl font-serif text-[#1A1A1A] mb-1 md:mb-2 leading-none">2x</div>
+                <div className="text-[10px] md:text-xs text-[#6A6A6A] font-medium uppercase tracking-widest">Per Year</div>
               </div>
             </motion.div>
           </motion.div>

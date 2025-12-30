@@ -52,7 +52,7 @@ const Testimonials = () => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8, delay: 0.1 }}
-                            className="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] md:leading-[0.92] text-[#1A1A1A] text-balance"
+                            className="text-3xl xs:text-4xl md:text-7xl lg:text-8xl font-serif leading-[1.1] md:leading-[0.92] text-[#1A1A1A] text-balance"
                         >
                             When a wheelchair <span className="text-[#C85A4A] italic font-normal">changed everything</span>
                         </motion.h2>
@@ -60,7 +60,7 @@ const Testimonials = () => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="space-y-6 md:space-y-7 text-base md:text-xl text-[#4A4A4A] leading-[1.7] md:leading-[1.8] font-light"
+                            className="space-y-6 md:space-y-7 text-sm md:text-xl text-[#4A4A4A] leading-[1.7] md:leading-[1.8] font-light"
                         >
                             <p>
                                 In October 2025, we met a father who had to make an impossible choice every day: go to work, or stay home with his 7-year-old daughter who has a disability. She had no way to move, so she stayed home alone.
@@ -68,7 +68,7 @@ const Testimonials = () => {
                             <p>
                                 We reached out to our network, and within a week, we found a wheelchair. We took them to CDM Murang'a, where she was fitted with a chair made just for her.
                             </p>
-                            <p className="italic text-[#C85A4A] font-medium text-lg md:text-xl">
+                            <p className="italic text-[#C85A4A] font-medium text-base md:text-xl">
                                 "Seeing her smile as she moved around freely, that's what this work is about."
                             </p>
                         </motion.div>

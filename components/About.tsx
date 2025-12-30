@@ -28,14 +28,14 @@ const About = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 w-48 md:w-72 aspect-square bg-[#C85A4A] rounded-[2rem] md:rounded-[3rem] flex items-center justify-center p-6 md:p-12 text-white shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-700 z-20">
-                <p className="text-base md:text-2xl font-serif italic text-center leading-snug">
+              <div className="absolute -right-2 md:-right-8 top-1/2 -translate-y-1/2 w-32 md:w-72 aspect-square bg-[#C85A4A] rounded-[1.5rem] md:rounded-[3rem] flex items-center justify-center p-4 md:p-12 text-white shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-700 z-20">
+                <p className="text-sm md:text-2xl font-serif italic text-center leading-snug">
                   "Hope is found in the hands that serve."
                 </p>
               </div>
             </div>
             {/* Background decorative blob */}
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#8A9A84]/15 rounded-full blur-3xl -z-1" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#8A9A84]/15 rounded-full blur-3xl -z-10" />
           </motion.div>
 
           {/* Narrative Content */}
@@ -43,20 +43,20 @@ const About = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-12"
+            className="space-y-8 md:space-y-12"
           >
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <motion.div className="flex items-center gap-4 group">
-                <span className="text-xs font-semibold text-[#C85A4A] uppercase tracking-[0.25em]" style={{ fontFamily: 'Sora, sans-serif' }}>Our Humble Start</span>
-                <div className="h-[1px] w-20 bg-[#C85A4A]/30 group-hover:w-24 transition-all duration-700" />
+                <span className="text-[10px] md:text-xs font-semibold text-[#C85A4A] uppercase tracking-[0.25em]" style={{ fontFamily: 'Sora, sans-serif' }}>Our Humble Start</span>
+                <div className="h-[1px] w-12 md:w-20 bg-[#C85A4A]/30 group-hover:w-24 transition-all duration-700" />
               </motion.div>
-              <h2 className="text-5xl md:text-7xl lg:text-9xl font-serif leading-[0.95] md:leading-[0.92] text-[#1A1A1A] tracking-tighter">
+              <h2 className="text-4xl md:text-7xl lg:text-9xl font-serif leading-[0.95] md:leading-[0.92] text-[#1A1A1A] tracking-tighter">
                 A mission <br /> born from <br className="hidden md:block" />
                 <span className="text-[#C85A4A] italic font-normal">pure heart.</span>
               </h2>
             </div>
 
-            <div className="space-y-6 md:space-y-10 text-lg md:text-2xl text-[#4A4A4A] leading-[1.7] md:leading-[1.8] font-light max-w-2xl">
+            <div className="space-y-5 md:space-y-10 text-base md:text-2xl text-[#4A4A4A] leading-[1.6] md:leading-[1.8] font-light max-w-2xl">
               <p>
                 Ray Mercy Ministry began with a simple truth we couldn't ignore: no child should face hunger or feel alone. What started as small acts of kindness in Kenya has grown into a lifelong commitment.
               </p>
@@ -65,9 +65,9 @@ const About = () => {
               </p>
             </div>
 
-            <div className="pt-8 md:pt-10 border-t border-[#E0E0E0]">
-              <p className="text-base md:text-lg font-medium text-[#1A1A1A] flex items-center gap-4 italic opacity-80">
-                <span className="w-8 md:w-12 h-px bg-[#C85A4A]" />
+            <div className="pt-6 md:pt-10 border-t border-[#E0E0E0]">
+              <p className="text-sm md:text-lg font-medium text-[#1A1A1A] flex items-center gap-4 italic opacity-80">
+                <span className="w-6 md:w-12 h-px bg-[#C85A4A]" />
                 Goal: A permanent home for orphans in Kenya.
               </p>
             </div>
