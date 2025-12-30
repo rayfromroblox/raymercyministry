@@ -24,7 +24,7 @@ const Footer = () => {
               />
             </div>
             <div className="space-y-1">
-              <h2 className="text-xl md:text-2xl font-serif font-black tracking-tighter leading-none">Ray Mercy</h2>
+              <h2 className="text-xl md:text-2xl font-serif font-black tracking-tighter leading-none">Ray Mercy Ministry</h2>
               <p className="text-[0.55rem] md:text-[0.6rem] font-bold uppercase tracking-[0.4em] text-[#8E8E8E] mt-0.5 md:mt-1" style={{ fontFamily: 'Sora, sans-serif' }}>Kenya • Ministry</p>
             </div>
           </div>
@@ -46,7 +46,7 @@ const Footer = () => {
           {/* Copyright - Refined Typography */}
           <div className="text-center md:text-right space-y-1 md:space-y-2">
             <p className="text-[0.6rem] md:text-[0.7rem] font-bold uppercase tracking-[0.4em] text-[#666666]" style={{ fontFamily: 'Sora, sans-serif' }}>
-              © {currentYear} • Ray Mercy
+              © {currentYear} • Ray Mercy Ministry
             </p>
             <p className="text-[0.55rem] md:text-[0.6rem] font-medium uppercase tracking-[0.2em] text-[#444444]" style={{ fontFamily: 'Sora, sans-serif' }}>
               Serving Kenya with dignity

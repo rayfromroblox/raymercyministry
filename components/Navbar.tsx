@@ -41,9 +41,9 @@ const Navbar = () => {
               }`}>
               <img src="/images/logo.png" alt="Ray Mercy Ministry" className="w-full h-full object-contain" />
             </div>
-            <div className="hidden xs:block text-left">
-              <div className={`font-serif font-black text-[#1A1A1A] leading-none tracking-tighter transition-all duration-500 ${isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
-                }`}>Ray Mercy</div>
+            <div className="text-left">
+              <div className={`font-serif font-black text-[#1A1A1A] leading-none tracking-tighter transition-all duration-500 ${isScrolled ? 'text-[0.9rem] sm:text-base md:text-lg' : 'text-base sm:text-xl md:text-2xl'
+                }`}>Ray Mercy Ministry</div>
               <div className="text-[0.5rem] md:text-[0.55rem] font-bold text-[#C85A4A] tracking-[0.3em] uppercase mt-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>Kenya</div>
             </div>
           </button>
@@ -121,7 +121,7 @@ const Navbar = () => {
                 Get Involved
               </button>
               <div className="pt-8 border-t border-[#F0F0F0] flex items-center justify-between">
-                <span className="text-[0.55rem] font-bold text-[#A0A0A0] uppercase tracking-[0.4em]" style={{ fontFamily: 'Sora, sans-serif' }}>Ray Mercy • Kenya</span>
+                <span className="text-[0.55rem] font-bold text-[#A0A0A0] uppercase tracking-[0.4em]" style={{ fontFamily: 'Sora, sans-serif' }}>Ray Mercy Ministry • Kenya</span>
                 <div className="w-8 h-8 rounded-full bg-[#1A1A1A] flex items-center justify-center text-white text-[0.5rem]">♡</div>
               </div>
             </div>
