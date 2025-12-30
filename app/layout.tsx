@@ -1,12 +1,26 @@
 import type { Metadata } from 'next'
-import { Playfair_Display } from 'next/font/google'
-import { ThemeProvider } from '@/contexts/ThemeContext'
+import { Playfair_Display, Lora, Sora } from 'next/font/google'
 import './globals.css'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-playfair',
+  weight: ['400', '500', '600', '700', '800', '900'],
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lora',
+  weight: ['400', '500', '600', '700'],
+})
+
+const sora = Sora({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sora',
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -65,10 +79,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/logo-256.png" />
         <meta name="google-site-verification" content="t59QmlN1scjF2bbE5CjX_yIFn48VZuwo3gWDO-BnLiY" />
       </head>
-      <body className={`${playfair.variable} font-sans`}>
-        <ThemeProvider defaultTheme="system">
-          {children}
-        </ThemeProvider>
+      <body className={`${playfair.variable} ${lora.variable} ${sora.variable} font-sans bg-[#F5F0E8] text-[#1A1A1A] selection:bg-[#C85A4A]/10 selection:text-[#C85A4A]`}>
+        {children}
       </body>
     </html>
   )

@@ -1,202 +1,158 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState, memo, useCallback } from 'react'
-import { FaTimes, FaChevronLeft, FaChevronRight, FaImages } from 'react-icons/fa'
+import { useInView, motion, AnimatePresence } from 'framer-motion'
+import { useRef, useState, memo } from 'react'
+import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
-// Photo gallery with a lightbox experience
 const Gallery = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
 
-  const galleryImages = [
-    { id: 1, src: '/images/gallery/1.jpg', alt: 'Ministry outreach with children', color: 'from-primary-300 to-primary-400' },
-    { id: 2, src: '/images/gallery/2.jpg', alt: 'Children receiving care and support', color: 'from-primary-400 to-primary-500' },
-    { id: 3, src: '/images/gallery/3.jpg', alt: 'Community service event', color: 'from-primary-500 to-primary-600' },
-    { id: 4, src: '/images/gallery/4.jpg', alt: 'Bringing hope to vulnerable children', color: 'from-primary-300 to-primary-500' },
-    { id: 5, src: '/images/gallery/5.jpg', alt: 'Feeding program initiative', color: 'from-primary-400 to-primary-600' },
-    { id: 6, src: '/images/gallery/6.jpg', alt: 'Serving the community with love', color: 'from-primary-500 to-primary-700' },
-    { id: 7, src: '/images/gallery/7.jpg', alt: 'Ministry work in action', color: 'from-primary-300 to-primary-400' },
-    { id: 8, src: '/images/gallery/8.jpg', alt: 'Making a difference in children lives', color: 'from-primary-400 to-primary-500' },
-    { id: 9, src: '/images/gallery/9.jpg', alt: 'Spreading hope and joy', color: 'from-primary-500 to-primary-600' },
-    { id: 10, src: '/images/gallery/10.jpg', alt: 'Empowering vulnerable communities', color: 'from-primary-300 to-primary-500' },
-    { id: 11, src: '/images/gallery/11.jpg', alt: 'Mercy and compassion in action', color: 'from-primary-400 to-primary-600' },
-    { id: 12, src: '/images/gallery/12.jpg', alt: 'Serving with dedication', color: 'from-primary-500 to-primary-700' },
-    { id: 13, src: '/images/gallery/13.jpg', alt: 'Transforming lives through service', color: 'from-primary-300 to-primary-400' },
-    { id: 14, src: '/images/gallery/14.jpg', alt: 'Building a brighter future together', color: 'from-primary-400 to-primary-500' },
-  ]
+  const images = [9, 10, 12, 14, 4, 1, 2, 3, 5, 6, 7, 8, 11, 13, 15, 16].map((imgId, i) => ({
+    id: imgId,
+    src: `/images/gallery/${imgId}.jpg`,
+    alt: `Moment of Mercy ${imgId}`,
+    className: i === 0 ? "md:col-span-2 md:row-span-2" : i === 5 ? "md:row-span-2" : i === 8 ? "md:col-span-2" : ""
+  }))
 
-  const openLightbox = useCallback((index: number) => {
-    setSelectedImage(index)
+  const openLightbox = (idx: number) => {
+    setSelectedImage(idx)
     document.body.style.overflow = 'hidden'
-  }, [])
+  }
 
-  const closeLightbox = useCallback(() => {
+  const closeLightbox = () => {
     setSelectedImage(null)
-    document.body.style.overflow = 'unset'
-  }, [])
-
-  const nextImage = useCallback(() => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % galleryImages.length)
-    }
-  }, [selectedImage, galleryImages.length])
-
-  const prevImage = useCallback(() => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length)
-    }
-  }, [selectedImage, galleryImages.length])
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+    document.body.style.overflow = ''
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5 }
-    }
-  }
+  const displayedImages = isExpanded ? images : images.slice(0, 5)
 
   return (
-    <section id="gallery" className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-white dark:bg-dark-900 relative" ref={ref}>
+    <section id="gallery" className="section-padding bg-white" ref={ref}>
       <div className="container-custom">
+        {/* Gallery Header */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="text-center mb-16 md:mb-32 space-y-6 md:space-y-8"
         >
-          <motion.div variants={itemVariants} className="text-center mb-12">
-            <h2 className="heading-secondary mb-4">
-              Gallery
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full mb-8" />
-            
-            {!isGalleryOpen && (
-              <motion.button
-                onClick={() => setIsGalleryOpen(true)}
-                className="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Gallery
-              </motion.button>
-            )}
-          </motion.div>
+          <div className="inline-flex items-center gap-4 group">
+            <span className="text-xs font-semibold text-[#8A9A84] uppercase tracking-[0.3em]" style={{ fontFamily: 'Sora, sans-serif' }}>The Visual Story</span>
+            <div className="h-[1px] w-20 bg-[#8A9A84]/40" />
+          </div>
+          <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif text-[#1A1A1A] leading-[0.95] md:leading-[0.9]">
+            Moments <br />of <span className="text-[#8A9A84] italic font-normal">tangible hope.</span>
+          </h2>
+        </motion.div>
 
-          {isGalleryOpen && (
-            <div className="animate-fade-in">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {galleryImages.map((image, index) => (
-              <div
-                key={image.id}
-                className="group relative aspect-square rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
-                onClick={() => openLightbox(index)}
-                style={{ willChange: 'transform' }}
-              >
-                <img 
-                  src={image.src} 
-                  alt={image.alt} 
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
-                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white font-medium text-lg">{image.alt}</p>
-                    <div className="w-12 h-1 bg-white/60 mt-2 rounded-full" />
-                  </div>
-                </div>
-              </div>
-            ))}
-              </div>
-              
-              <div className="text-center mt-8">
-                <button
-                  onClick={() => setIsGalleryOpen(false)}
-                  className="px-6 py-3 text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors hover:scale-105"
+        {/* Boutique Masonry Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
+            {displayedImages.map((img) => {
+              const fullIdx = images.findIndex(i => i.id === img.id)
+              return (
+                <motion.div
+                  key={img.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  className={`group relative overflow-hidden rounded-[2.5rem] cursor-pointer shadow-xl ${img.className}`}
+                  style={{ transformOrigin: 'center' }}
+                  onClick={() => openLightbox(fullIdx)}
                 >
-                  Close Gallery
-                </button>
-              </div>
-            </div>
-          )}
+                  <div className="w-full h-full aspect-square md:aspect-auto overflow-hidden">
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-[#C85A4A]/0 group-hover:bg-[#C85A4A]/5 transition-colors duration-700" />
+                  </div>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Action Button */}
+        <motion.div
+          layout
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-16 md:mt-24 text-center"
+        >
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="btn-secondary px-10 py-4 text-sm tracking-widest uppercase font-bold border-[#8A9A84]/20 text-[#1A1A1A] hover:bg-[#8A9A84]/5"
+          >
+            {isExpanded ? 'Show Less' : 'Explore the Archive'}
+          </button>
         </motion.div>
       </div>
 
-      {selectedImage !== null && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
-          onClick={closeLightbox}
-        >
-          <button
-            className="absolute top-4 right-4 text-white text-4xl hover:text-primary-400 transition-colors z-10"
+      {/* Cinematic Lightbox */}
+      <AnimatePresence>
+        {selectedImage !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-[#1A1A1A]/98 backdrop-blur-3xl flex items-center justify-center p-6 md:p-20"
             onClick={closeLightbox}
           >
-            <FaTimes />
-          </button>
+            <button
+              className="absolute top-6 right-6 md:top-12 md:right-12 w-12 h-12 md:w-20 md:h-20 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center text-white transition-all duration-300 border border-white/5"
+              onClick={closeLightbox}
+            >
+              <FaTimes size={18} />
+            </button>
 
-          <button
-            className="absolute left-4 text-white text-4xl hover:text-primary-400 transition-colors z-10"
-            onClick={(e) => {
-              e.stopPropagation()
-              prevImage()
-            }}
-          >
-            <FaChevronLeft />
-          </button>
+            <div className="relative max-w-7xl w-full h-full flex flex-col items-center justify-center gap-12" onClick={(e) => e.stopPropagation()}>
+              <div className="w-full h-full relative rounded-[4rem] overflow-hidden shadow-2xl border border-white/5 bg-black/20">
+                <img
+                  src={images[selectedImage].src}
+                  alt={images[selectedImage].alt}
+                  className="w-full h-full object-contain"
+                />
+              </div>
 
-          <motion.div
-            key={selectedImage}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="max-w-5xl max-h-[90vh] relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={galleryImages[selectedImage].src}
-              alt={galleryImages[selectedImage].alt}
-              className="rounded-lg max-h-[80vh] w-auto object-contain mx-auto"
-              decoding="async"
-            />
-            <p className="text-white text-center mt-4 text-lg">
-              {galleryImages[selectedImage].alt}
-            </p>
+              <div className="flex items-center gap-6 md:gap-12 bg-white/5 backdrop-blur-md px-8 md:px-12 py-4 md:py-6 rounded-full border border-white/10 text-white shadow-2xl">
+                <button
+                  onClick={() => setSelectedImage((selectedImage - 1 + images.length) % images.length)}
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"
+                >
+                  <FaChevronLeft size={16} />
+                </button>
+                <div className="text-center">
+                  <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] opacity-60 mb-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>Detail</p>
+                  <p className="font-serif italic text-lg md:text-2xl">{selectedImage + 1} of {images.length}</p>
+                </div>
+                <button
+                  onClick={() => setSelectedImage((selectedImage + 1) % images.length)}
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"
+                >
+                  <FaChevronRight size={16} />
+                </button>
+              </div>
+            </div>
           </motion.div>
-
-          <button
-            className="absolute right-4 text-white text-4xl hover:text-primary-400 transition-colors z-10"
-            onClick={(e) => {
-              e.stopPropagation()
-              nextImage()
-            }}
-          >
-            <FaChevronRight />
-          </button>
-
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg">
-            {selectedImage + 1} / {galleryImages.length}
-          </div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   )
 }
 
 export default memo(Gallery)
-

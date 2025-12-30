@@ -1,186 +1,79 @@
 'use client'
 
-import { useInView } from 'framer-motion'
-import { useRef, memo, useState } from 'react'
-import { FaHeart, FaHandHoldingHeart, FaSeedling, FaChevronDown } from 'react-icons/fa'
+import { useInView, motion } from 'framer-motion'
+import { useRef, memo } from 'react'
+import { FaEnvelope } from 'react-icons/fa'
 
-// About section sharing our mission, vision and values
 const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [expandedSection, setExpandedSection] = useState<string | null>(null)
-
-  const values = [
-    {
-      icon: FaHeart,
-      title: "Compassion",
-      description: "Serving with dignity and respect, showing Christ's love to every person we encounter",
-      mobileDescription: "Showing love with dignity and respect",
-      color: "from-pink-500 to-rose-600",
-      bgColor: "bg-gradient-to-br from-pink-50 to-rose-100 dark:from-pink-900/20 dark:to-rose-900/30"
-    },
-    {
-      icon: FaHandHoldingHeart,
-      title: "Service",
-      description: "Bi-annual feeding programs and outreach, meeting practical needs with excellence",
-      mobileDescription: "Meeting needs with excellence",
-      color: "from-primary-500 to-primary-700",
-      bgColor: "bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/30"
-    },
-    {
-      icon: FaSeedling,
-      title: "Hope",
-      description: "Building a future children's home and nurturing dreams for tomorrow",
-      mobileDescription: "Building dreams for tomorrow",
-      color: "from-secondary-500 to-amber-600",
-      bgColor: "bg-gradient-to-br from-secondary-50 to-amber-100 dark:from-secondary-900/20 dark:to-amber-900/30"
-    }
-  ]
-
-  const toggleSection = (section: string) => {
-    setExpandedSection(expandedSection === section ? null : section)
-  }
 
   return (
-    <section id="about" className="py-12 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 bg-gradient-to-b from-white via-neutral-50 to-white dark:from-dark-950 dark:via-dark-900 dark:to-dark-950 relative overflow-hidden" ref={ref}>
-      {/* Soft glowing background accents */}
-      <div className="absolute top-20 right-0 w-64 md:w-96 h-64 md:h-96 bg-primary-200/30 dark:bg-primary-800/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-40 left-0 w-56 md:w-80 h-56 md:h-80 bg-secondary-200/30 dark:bg-secondary-800/10 rounded-full blur-3xl" />
-
-      <div className="container-custom relative z-10">
-        <div className={`transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Section intro */}
-          <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-primary-900 dark:text-primary-100 mb-4">
-              About Us
-            </h2>
-            <div className="w-20 md:w-24 h-1.5 bg-gradient-to-r from-primary-500 via-secondary-500 to-primary-500 mx-auto rounded-full" />
-            <p className="text-gray-600 dark:text-dark-300 mt-4 md:mt-6 max-w-2xl mx-auto text-base md:text-lg px-4">
-              Serving with compassion • Building with hope • Growing through faith
-            </p>
-          </div>
-
-          {/* Mission and vision cards become accordions on mobile */}
-          <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-10 lg:gap-16 mb-12 md:mb-20">
-            {/* Mission card */}
-            <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-md md:shadow-none">
-              <button
-                onClick={() => toggleSection('mission')}
-                className="w-full flex items-center justify-between md:cursor-default"
-              >
-                <div className="flex-1 text-left">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-primary-900 dark:text-primary-100 mb-2">
-                    Mission
-                  </h3>
-                  <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full" />
-                </div>
-                <FaChevronDown className={`md:hidden w-5 h-5 text-primary-600 transition-transform ${expandedSection === 'mission' ? 'rotate-180' : ''}`} />
-              </button>
-
-              <div className={`mt-4 space-y-4 md:mt-6 md:space-y-6 md:block ${expandedSection === 'mission' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
-                {/* Short version for phones */}
-                <p className="md:hidden text-gray-700 dark:text-dark-200 text-base leading-relaxed">
-                  Feeding families across Kenya twice yearly with meals and support.
+    <section id="about" className="section-padding bg-[#F5F0E8]" ref={ref}>
+      <div className="container-custom">
+        {/* Story Section - Large Editorial Layout */}
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 lg:gap-32 items-center mb-32 md:mb-64">
+          {/* Visuals - Asymmetric Floating Grid */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+          >
+            <div className="relative z-10 space-y-8 md:space-y-12">
+              <div className="relative aspect-[4/5] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white max-w-[95%] md:max-w-[90%]">
+                <img
+                  src="/images/gallery/8.jpg"
+                  alt="Ray Mercy Feeding Program"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 w-48 md:w-72 aspect-square bg-[#C85A4A] rounded-[2rem] md:rounded-[3rem] flex items-center justify-center p-6 md:p-12 text-white shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-700 z-20">
+                <p className="text-base md:text-2xl font-serif italic text-center leading-snug">
+                  "Hope is found in the hands that serve."
                 </p>
-                {/* Full paragraph for larger screens */}
-                <p className="hidden md:block text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
-                  We serve vulnerable children and families through feeding programs and community outreach.
-                  Twice yearly, we provide meals and support to those in need across Kenya.
-                </p>
-                <div className="relative pl-4 md:pl-6 py-3 md:py-4 border-l-4 border-primary-500 dark:border-primary-400">
-                  <div className="absolute -left-2 top-4 md:top-6 w-4 h-4 bg-primary-500 dark:bg-primary-400 rounded-full" />
-                  <p className="text-primary-800 dark:text-primary-200 text-base md:text-lg italic font-medium">
-                    "Whoever brings refreshment will be refreshed."
-                  </p>
-                  <p className="text-primary-600 dark:text-primary-400 text-xs md:text-sm mt-2 font-semibold">— Proverbs 11:25</p>
-                </div>
               </div>
             </div>
+            {/* Background decorative blob */}
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#8A9A84]/15 rounded-full blur-3xl -z-1" />
+          </motion.div>
 
-            {/* Vision card */}
-            <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-md md:shadow-none">
-              <button
-                onClick={() => toggleSection('vision')}
-                className="w-full flex items-center justify-between md:cursor-default"
-              >
-                <div className="flex-1 text-left">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-primary-900 dark:text-primary-100 mb-2">
-                    Vision
-                  </h3>
-                  <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full" />
-                </div>
-                <FaChevronDown className={`md:hidden w-5 h-5 text-primary-600 transition-transform ${expandedSection === 'vision' ? 'rotate-180' : ''}`} />
-              </button>
-
-              <div className={`mt-4 space-y-4 md:mt-6 md:space-y-6 md:block ${expandedSection === 'vision' || typeof window === 'undefined' ? 'block' : 'hidden md:block'}`}>
-                {/* Short version for phones */}
-                <p className="md:hidden text-gray-700 dark:text-dark-200 text-base leading-relaxed">
-                  Building a children's home for orphaned and vulnerable kids in Kenya.
-                </p>
-                {/* Full paragraph for larger screens */}
-                <p className="hidden md:block text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed">
-                  To establish a children's home providing safety, education, and care for orphaned and
-                  vulnerable children in Kenya.
-                </p>
-                <div className="relative overflow-hidden bg-gradient-to-br from-primary-500/10 via-secondary-500/10 to-primary-500/5 dark:from-primary-400/10 dark:via-secondary-400/10 dark:to-primary-400/5 p-6 md:p-8 rounded-2xl border-2 border-primary-200/50 dark:border-primary-700/50">
-                  <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-secondary-400/20 dark:bg-secondary-500/10 rounded-full blur-2xl" />
-                  <p className="relative text-gray-800 dark:text-dark-100 text-sm md:text-base leading-relaxed">
-                    Founded by <span className="font-bold text-primary-700 dark:text-primary-300">Rachel Macharia</span>, our ministry continues to expand its reach, serving more families each year with God's love and compassion.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Core values shrink on mobile and stretch out on desktop */}
-          <div className="mt-12 md:mt-24">
-            <div className="text-center mb-6 md:mb-12">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-dark-50 mb-2 md:mb-3">Our Core Values</h3>
-              <p className="text-gray-600 dark:text-dark-300 text-sm md:text-lg">The foundation of everything we do</p>
+          {/* Narrative Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-12"
+          >
+            <div className="space-y-6">
+              <motion.div className="flex items-center gap-4 group">
+                <span className="text-xs font-semibold text-[#C85A4A] uppercase tracking-[0.25em]" style={{ fontFamily: 'Sora, sans-serif' }}>Our Humble Start</span>
+                <div className="h-[1px] w-20 bg-[#C85A4A]/30 group-hover:w-24 transition-all duration-700" />
+              </motion.div>
+              <h2 className="text-5xl md:text-7xl lg:text-9xl font-serif leading-[0.95] md:leading-[0.92] text-[#1A1A1A] tracking-tighter">
+                A mission <br /> born from <br className="hidden md:block" />
+                <span className="text-[#C85A4A] italic font-normal">pure heart.</span>
+              </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8">
-              {values.map((value, index) => (
-                <div
-                  key={index}
-                  className="group relative active:scale-95 md:hover:-translate-y-2 transition-transform duration-300"
-                >
-                  {/* Compact mobile card */}
-                  <div className={`md:hidden relative ${value.bgColor} p-4 rounded-xl overflow-hidden flex items-center gap-4`}>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-active:opacity-20 transition-opacity duration-300`} />
-
-                    <div className={`relative flex-shrink-0 inline-flex p-3 bg-gradient-to-br ${value.color} rounded-xl shadow-md`}>
-                      <value.icon className="text-white text-2xl" />
-                    </div>
-
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-lg font-serif font-bold text-gray-900 dark:text-white mb-1">{value.title}</h4>
-                      <p className="text-gray-700 dark:text-dark-200 leading-snug text-sm">{value.mobileDescription}</p>
-                    </div>
-
-                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${value.color}`} />
-                  </div>
-
-                  {/* Full-sized desktop card */}
-                  <div className={`hidden md:block relative ${value.bgColor} p-8 rounded-3xl overflow-hidden min-h-[280px]`}>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-
-                    <div className="relative mb-6">
-                      <div className={`inline-flex p-5 bg-gradient-to-br ${value.color} rounded-2xl shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all duration-500`}>
-                        <value.icon className="text-white text-4xl" />
-                      </div>
-                    </div>
-
-                    <h4 className="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-3">{value.title}</h4>
-                    <p className="text-gray-700 dark:text-dark-200 leading-relaxed text-base">{value.description}</p>
-
-                    <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${value.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-3xl`} />
-                  </div>
-                </div>
-              ))}
+            <div className="space-y-6 md:space-y-10 text-lg md:text-2xl text-[#4A4A4A] leading-[1.7] md:leading-[1.8] font-light max-w-2xl">
+              <p>
+                Ray Mercy Ministry began with a simple truth we couldn't ignore: no child should face hunger or feel alone. What started as small acts of kindness in Kenya has grown into a lifelong commitment.
+              </p>
+              <p>
+                We believe in showing up, consistently and with care. Our biannual programs meet immediate needs, while our home visits build relationships that last. We are not just providing meals; we are providing a sense of belonging.
+              </p>
             </div>
-          </div>
+
+            <div className="pt-8 md:pt-10 border-t border-[#E0E0E0]">
+              <p className="text-base md:text-lg font-medium text-[#1A1A1A] flex items-center gap-4 italic opacity-80">
+                <span className="w-8 md:w-12 h-px bg-[#C85A4A]" />
+                Goal: A permanent home for orphans in Kenya.
+              </p>
+            </div>
+          </motion.div>
         </div>
+
       </div>
     </section>
   )

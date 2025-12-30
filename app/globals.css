@@ -3,146 +3,94 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-background: 245, 240, 232;
+  }
+
+  /* Custom Scrollbar - Premium Aesthetic */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F5F0E8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C85A4A;
+    border-radius: 10px;
+    border: 3px solid #F5F0E8;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B54A3A;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    scroll-padding-top: 100px;
   }
-  
+
   body {
-    @apply bg-white dark:bg-dark-950 text-gray-800 dark:text-dark-100 transition-colors duration-300;
+    @apply bg-[#F5F0E8] text-[#1A1A1A];
+    font-family: var(--font-lora), serif;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    font-size: 19px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    font-weight: 400;
   }
-  
-  /* Make focused elements obvious for keyboard users */
-  *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-primary-500 dark:outline-primary-400 rounded-sm;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-rendering: optimizeLegibility;
   }
-  
-  /* Friendly highlight color when folks select text */
-  ::selection {
-    @apply bg-primary-200 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
+
+  p,
+  span,
+  div,
+  a {
+    font-family: var(--font-lora), serif;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
-    letter-spacing: 0.01em;
-  }
-  
-  .btn-primary:active {
-    @apply scale-[0.98];
-  }
-  
-  .section-padding {
-    @apply py-16 md:py-24 px-6 md:px-12 lg:px-20;
-  }
-  
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-20;
   }
-  
-  .heading-primary {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-gray-900 dark:text-dark-50 tracking-tight leading-tight;
+
+  .btn {
+    @apply inline-flex items-center justify-center px-9 py-4 rounded-full transition-all duration-500;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
-  
-  .heading-secondary {
-    @apply text-3xl md:text-4xl lg:text-5xl font-semibold font-serif text-gray-900 dark:text-dark-50 tracking-tight leading-tight;
+
+  .btn-primary {
+    @apply btn bg-[#C85A4A] text-white hover:bg-[#B54A3A] hover:shadow-xl hover:shadow-[#C85A4A]/25 hover:-translate-y-0.5;
   }
-  
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent;
+
+  .btn-secondary {
+    @apply btn bg-white text-[#1A1A1A] border-2 border-[#E0E0E0] hover:border-[#C85A4A] hover:text-[#C85A4A] hover:shadow-lg;
   }
-  
-  /* Gentle hover lift for cards */
-  .card-hover {
-    @apply transition-all duration-500 ease-out;
+
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
   }
-  
-  .card-hover:hover {
-    @apply transform -translate-y-2;
-  }
-  
-  /* Simple fade-up animation */
-  @keyframes reveal {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .reveal {
-    animation: reveal 0.6s ease-out forwards;
-  }
-  
-  /* Keep the logo readable over dark backgrounds */
-  .logo-blend {
-    mix-blend-mode: multiply;
-  }
-  
-  .dark .logo-blend {
-    mix-blend-mode: normal;
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
-
-/* Optional glass backdrop */
-@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
-  .glass-nav {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-  }
-}
-
-/* Guardrails for smooth scrolling */
-@supports (scroll-behavior: smooth) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-/* Slim custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-50;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-primary-400 to-primary-500 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply from-primary-500 to-primary-600;
-}
-
-/* Softer page transitions */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-/* Tidy image loading tweaks */
-img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-img[loading="lazy"] {
-  opacity: 0;
-  animation: fadeIn 0.4s ease-in forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-

@@ -1,183 +1,134 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, memo, useCallback } from 'react'
-import ThemeToggle from './ThemeToggle'
-import { FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setIsMobileMenuOpen(false) // Collapse the drawer once a section is chosen
+  const scrollTo = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setIsOpen(false)
   }, [])
 
-  const navLinks = [
-    { name: 'Home', id: 'hero' },
-    { name: 'About', id: 'about' },
-    { name: 'Gallery', id: 'gallery' },
-    { name: 'Programs', id: 'activities' },
+  const links = [
+    { name: 'Philosophy', id: 'about' },
+    { name: 'Impact', id: 'activities' },
+    { name: 'Archive', id: 'gallery' },
+    { name: 'Witness', id: 'testimonials' },
     { name: 'Contact', id: 'contact' },
   ]
 
   return (
-    <>
-      <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-white/90 dark:bg-dark-950/90 backdrop-blur-md shadow-sm py-2'
-          : 'bg-transparent py-6'
-          }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="container-custom px-6">
-          <div className="flex items-center justify-between h-16">
-            <motion.button
-              onClick={() => scrollToSection('hero')}
-              className="flex items-center gap-3 group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <img
-                src="/images/logo.png"
-                alt="Ray Mercy Ministry"
-                className="w-10 h-10 md:w-12 md:h-12 transition-all duration-300 drop-shadow-lg"
-                fetchPriority="high"
-                decoding="async"
-                width="48"
-                height="48"
-              />
-              <span className={`font-serif font-bold text-lg md:text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-primary-900 dark:text-white' : 'text-white drop-shadow-md'}`}>
-                Ray Mercy Ministry
-              </span>
-            </motion.button>
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${isScrolled ? 'py-2' : 'py-3 md:py-4'}`}>
+      <div className="container-custom">
+        <div className={`relative flex items-center justify-between px-6 md:px-8 py-2.5 md:py-3 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-700 ${isScrolled ? 'bg-white/95 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-[#E8E8E8]' : 'bg-transparent'
+          }`}>
+          {/* Brand Logo */}
+          <button
+            onClick={() => scrollTo('hero')}
+            className="flex items-center gap-3 md:gap-4 group"
+          >
+            <div className={`transition-all duration-500 rounded-xl md:rounded-2xl bg-white flex items-center justify-center p-2 md:p-2.5 shadow-xl ring-1 ring-[#E8E8E8] ${isScrolled ? 'w-9 h-9 md:w-10 h-10' : 'w-11 h-11 md:w-14 md:h-14'
+              }`}>
+              <img src="/images/logo.png" alt="Ray Mercy Ministry" className="w-full h-full object-contain" />
+            </div>
+            <div className="hidden xs:block text-left">
+              <div className={`font-serif font-black text-[#1A1A1A] leading-none tracking-tighter transition-all duration-500 ${isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
+                }`}>Ray Mercy</div>
+              <div className="text-[0.5rem] md:text-[0.55rem] font-bold text-[#C85A4A] tracking-[0.3em] uppercase mt-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>Kenya</div>
+            </div>
+          </button>
 
-            {/* Desktop links stay visible here */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <motion.button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`relative text-sm font-medium tracking-wide transition-colors duration-300 group ${isScrolled
-                    ? 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-white'
-                    : 'text-white/80 hover:text-white'
-                    }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-10">
+            {links.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className="group relative py-1"
+              >
+                <span className="text-[0.65rem] font-bold text-[#1A1A1A] uppercase tracking-[0.15em] transition-colors duration-500 group-hover:text-[#C85A4A]" style={{ fontFamily: 'Sora, sans-serif' }}>
                   {link.name}
-                  <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${isScrolled ? 'bg-primary-600' : 'bg-white'}`} />
-                </motion.button>
+                </span>
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#C85A4A] transition-all duration-500 ease-out group-hover:w-full" />
+              </button>
+            ))}
+            <button
+              onClick={() => scrollTo('contact')}
+              className="btn-primary py-2.5 px-7 text-[0.6rem] shadow-none hover:shadow-lg transition-all duration-500"
+            >
+              Get Involved
+            </button>
+          </div>
+
+          {/* Mobile Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden w-9 h-9 rounded-lg bg-white border border-[#E8E8E8] flex items-center justify-center text-[#1A1A1A] shadow-md transition-all active:scale-95"
+          >
+            {isOpen ? <FaTimes size={14} /> : <FaBars size={14} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="md:hidden fixed inset-0 bg-white z-[110] flex flex-col pt-32 px-8 pb-12"
+          >
+            {/* Close button in drawer */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-8 right-8 w-10 h-10 rounded-full bg-[#F5F0E8] flex items-center justify-center text-[#1A1A1A]"
+            >
+              <FaTimes size={16} />
+            </button>
+
+            <div className="space-y-6">
+              {links.map((link, i) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  className="block w-full text-left group"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-[0.6rem] font-bold text-[#C85A4A]/50 uppercase tracking-[0.2em]" style={{ fontFamily: 'Sora, sans-serif' }}>0{i + 1}</span>
+                    <span className="text-4xl xs:text-5xl font-serif font-black text-[#1A1A1A] group-active:text-[#C85A4A] transition-colors">{link.name}</span>
+                  </div>
+                </button>
               ))}
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="hidden md:block">
-                <ThemeToggle isScrolled={isScrolled} />
-              </div>
-
-              {/* Hamburger button for smaller screens */}
+            <div className="mt-auto space-y-8">
               <button
-                onClick={() => setIsMobileMenuOpen(true)}
-                className={`md:hidden p-2 transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'}`}
-                aria-label="Open menu"
+                onClick={() => scrollTo('contact')}
+                className="btn-primary w-full py-5 text-sm"
               >
-                <svg
-                  className="w-7 h-7"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                Get Involved
               </button>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Full-height mobile drawer */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-[100] md:hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 dark:from-dark-900 dark:via-dark-950 dark:to-black overflow-y-auto"
-          >
-            <div className="min-h-full flex flex-col">
-              {/* Drawer header stays pinned */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10 sticky top-0 bg-primary-700/95 dark:bg-dark-950/95 backdrop-blur-sm z-10">
-                <img
-                  src="/images/logo.png"
-                  alt="Ray Mercy Ministry"
-                  className="w-12 h-12"
-                />
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-3 text-white hover:bg-white/10 rounded-full transition-colors"
-                  aria-label="Close menu"
-                >
-                  <FaTimes className="w-6 h-6" />
-                </button>
-              </div>
-
-              {/* Make theme switching easy on mobile */}
-              <div className="p-6 border-b border-white/10">
-                <div className="flex items-center justify-between">
-                  <span className="text-white font-semibold">Theme</span>
-                  <ThemeToggle isScrolled={true} />
-                </div>
-              </div>
-
-              {/* Oversized links for comfy tapping */}
-              <nav className="flex-1 px-8 py-6 space-y-2">
-                {navLinks.map((link, index) => (
-                  <motion.button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group text-left py-5 border-b border-white/10 last:border-0 w-full"
-                  >
-                    <span className="text-3xl font-serif font-bold text-white group-hover:text-secondary-300 transition-colors">
-                      {link.name}
-                    </span>
-                    <div className="h-1 w-0 bg-secondary-400 group-hover:w-16 transition-all duration-300 mt-2" />
-                  </motion.button>
-                ))}
-              </nav>
-
-              {/* Keep the call-to-action within reach */}
-              <div className="p-6 border-t border-white/10 sticky bottom-0 bg-primary-700/95 dark:bg-dark-950/95 backdrop-blur-sm">
-                <a
-                  href="tel:+254721826905"
-                  className="block w-full px-6 py-4 bg-secondary-500 hover:bg-secondary-400 text-white font-semibold rounded-full transition-colors text-center"
-                >
-                  Call Now
-                </a>
+              <div className="pt-8 border-t border-[#F0F0F0] flex items-center justify-between">
+                <span className="text-[0.55rem] font-bold text-[#A0A0A0] uppercase tracking-[0.4em]" style={{ fontFamily: 'Sora, sans-serif' }}>Ray Mercy • Kenya</span>
+                <div className="w-8 h-8 rounded-full bg-[#1A1A1A] flex items-center justify-center text-white text-[0.5rem]">♡</div>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </nav>
   )
 }
 

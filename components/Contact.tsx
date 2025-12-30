@@ -1,148 +1,109 @@
 'use client'
 
-import { useInView } from 'framer-motion'
+import { useInView, motion } from 'framer-motion'
 import { useRef, memo } from 'react'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart } from 'react-icons/fa'
+import { FaPhone, FaEnvelope } from 'react-icons/fa'
 
-// Contact section with a friendly CTA
 const Contact = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const contactInfo = [
+  const info = [
     {
       icon: FaPhone,
-      title: "Call Us",
+      title: "Speak with us",
       value: "+254 721 826905",
       link: "tel:+254721826905",
-      action: "Tap to Call"
+      shape: "rounded-full"
     },
     {
       icon: FaEnvelope,
-      title: "Email Us",
+      title: "Write to us",
       value: "rachelmacharia80@gmail.com",
       link: "mailto:rachelmacharia80@gmail.com",
-      action: "Tap to Email"
-    },
-    {
-      icon: FaMapMarkerAlt,
-      title: "Find Us",
-      value: "Kenya",
-      link: null,
-      action: null
+      shape: "rounded-[1.5rem] scale-y-110"
     }
   ]
 
   return (
-    <section id="contact" className="py-12 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 relative overflow-hidden" ref={ref}>
-      {/* Soft gradient backdrop */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-neutral-50 dark:from-dark-950 dark:to-dark-900" />
-      <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-secondary-200/30 dark:bg-secondary-800/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-56 md:w-80 h-56 md:h-80 bg-primary-200/30 dark:bg-primary-800/10 rounded-full blur-3xl" />
-
-      <div className="container-custom relative z-10">
-        <div className={`transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Section header */}
-          <div className="text-center mb-10 md:mb-16 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 mb-4 md:mb-6">
-              <FaHeart className="text-secondary-500 text-xl md:text-2xl animate-pulse" />
-              <span className="text-secondary-600 dark:text-secondary-400 font-semibold uppercase tracking-wider text-sm">Partner With Us</span>
-              <FaHeart className="text-secondary-500 text-xl md:text-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+    <section id="contact" className="section-padding bg-[#F5F0E8] overflow-hidden" ref={ref}>
+      <div className="container-custom">
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          {/* Invitation Copy */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-10 text-center lg:text-left"
+          >
+            <div className="space-y-6">
+              <div className="inline-flex items-center justify-center lg:justify-start gap-4 group w-full lg:w-auto">
+                <span className="text-xs font-semibold text-[#1A1A1A] uppercase tracking-[0.2em]" style={{ fontFamily: 'Sora, sans-serif' }}>Open Hearts</span>
+                <div className="h-px w-10 bg-[#C85A4A]" />
+              </div>
+              <h2 className="text-5xl md:text-8xl font-serif text-[#1A1A1A] leading-[0.95] tracking-tighter mx-auto lg:mx-0">
+                Let’s change <br />
+                the <span className="text-[#C85A4A] italic font-normal">narrative.</span>
+              </h2>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-primary-900 dark:text-primary-100 mb-4 md:mb-6">
-              Together, We Can Make a Difference
-            </h2>
-
-            {/* Short copy for phones, fuller story for desktops */}
-            <p className="text-gray-700 dark:text-dark-200 text-base md:text-lg leading-relaxed mb-3 md:mb-4 px-2">
-              <span className="md:hidden">
-                Your support plants seeds of hope in vulnerable communities across Kenya.
-              </span>
-              <span className="hidden md:inline">
-                Every call, every email, every connection brings us closer to changing a child's life.
-                Your support, whether big or small, plants seeds of hope in vulnerable communities across Kenya.
-              </span>
+            <p className="text-lg md:text-xl text-[#4A4A4A] leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+              Every conversation starts a journey. Whether you wish to partner, volunteer or simply hear more about the children we serve; we invite you to reach out.
             </p>
 
-            <p className="text-primary-700 dark:text-primary-300 font-medium italic text-base md:text-lg">
-              "Alone we can do so little; together we can do so much."
-            </p>
-          </div>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+              <a href="tel:+254721826905" className="btn-primary w-full sm:w-auto">
+                Start a Conversation
+              </a>
+              <a href="mailto:rachelmacharia80@gmail.com" className="btn-secondary w-full sm:w-auto">
+                Send an Email
+              </a>
+            </div>
+          </motion.div>
 
-          {/* Contact cards adapt to whatever layout is available */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12 max-w-4xl mx-auto">
-            {contactInfo.map((info, index) => (
-              <div key={index}>
-                {info.link ? (
-                  <a
-                    href={info.link}
-                    className="group block bg-white dark:bg-dark-800 rounded-2xl p-6 border-2 border-gray-200 dark:border-dark-700 hover:border-primary-400 dark:hover:border-primary-500 active:scale-95 md:active:scale-100 md:hover:shadow-lg transition-all duration-300 h-full"
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/30 dark:to-secondary-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <info.icon className="text-primary-600 dark:text-primary-400 text-2xl" />
+          {/* Contact Details Card - Compact Rework */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/30 blur-2xl -z-10" />
+
+              <div className="bg-white rounded-[2rem] md:rounded-[4rem] p-6 md:p-14 shadow-[0_60px_120px_-30px_rgba(0,0,0,0.06)] border border-white/60 relative z-10">
+                <div className="space-y-8 md:space-y-12 relative z-10">
+                  {info.map((item, i) => (
+                    <div key={i} className="flex gap-4 md:gap-8 items-center group">
+                      <div className={`flex-shrink-0 w-11 h-11 md:w-16 md:h-16 bg-[#F5F0E8] flex items-center justify-center transition-all duration-700 group-hover:bg-[#C85A4A] ${item.shape}`}>
+                        <item.icon className="text-base md:text-xl text-[#C85A4A] group-hover:text-white transition-colors duration-500" />
                       </div>
-                      <h3 className="text-sm font-semibold text-gray-500 dark:text-dark-400 mb-2 uppercase tracking-wide">
-                        {info.title}
-                      </h3>
-                      <p className="text-gray-900 dark:text-white font-medium mb-3 break-all text-sm md:text-base">
-                        {info.value}
-                      </p>
-                      <span className="text-sm text-primary-600 dark:text-primary-400 font-semibold">
-                        {info.action} →
-                      </span>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="bg-white dark:bg-dark-800 rounded-2xl p-6 border-2 border-gray-200 dark:border-dark-700 h-full">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/30 dark:to-secondary-900/30 rounded-xl flex items-center justify-center mb-4">
-                        <info.icon className="text-primary-600 dark:text-primary-400 text-2xl" />
+
+                      <div className="space-y-1 min-w-0 flex-1">
+                        <p className="text-[0.5rem] md:text-[0.6rem] font-bold text-[#A0A0A0] uppercase tracking-[0.2em]" style={{ fontFamily: 'Sora, sans-serif' }}>{item.title}</p>
+                        {item.link ? (
+                          <a href={item.link} className="text-base md:text-2xl font-serif font-black text-[#1A1A1A] hover:text-[#C85A4A] transition-colors leading-tight block truncate">
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-base md:text-2xl font-serif font-black text-[#1A1A1A] leading-tight truncate">{item.value}</p>
+                        )}
                       </div>
-                      <h3 className="text-sm font-semibold text-gray-500 dark:text-dark-400 mb-2 uppercase tracking-wide">
-                        {info.title}
-                      </h3>
-                      <p className="text-gray-900 dark:text-white font-medium text-sm md:text-base">
-                        {info.value}
-                      </p>
                     </div>
+                  ))}
+                </div>
+
+                <div className="mt-12 pt-10 border-t border-[#F0F0F0] hidden md:flex items-center gap-6">
+                  <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center text-white text-base flex-shrink-0">
+                    ♡
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Highlight the main call-to-action */}
-          <div className="text-center">
-            <div className="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-2xl p-6 md:p-8 max-w-2xl w-full border border-primary-200/50 dark:border-primary-700/50">
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-gray-900 dark:text-white mb-3 md:mb-4">
-                Ready to Make an Impact?
-              </h3>
-              <p className="text-gray-600 dark:text-dark-300 mb-6 leading-relaxed text-sm md:text-base px-2">
-                Reach out to learn how you can support our feeding programs, sponsor a child, or volunteer your time
-              </p>
-
-              {/* Stack the buttons on phones, line them up on desktop */}
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-                <a
-                  href="tel:+254721826905"
-                  className="w-full sm:w-auto px-8 py-4 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <FaPhone className="text-sm" />
-                  Call Rachel
-                </a>
-
-                <a
-                  href="mailto:rachelmacharia80@gmail.com"
-                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-dark-700 text-primary-600 dark:text-primary-400 font-semibold rounded-lg border-2 border-primary-600 dark:border-primary-500 hover:bg-primary-50 dark:hover:bg-dark-600 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <FaEnvelope className="text-sm" />
-                  Send a Message
-                </a>
+                  <p className="text-sm font-light text-[#6A6A6A] leading-relaxed">
+                    Our doors and hearts are always open to those who believe in a brighter future.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
